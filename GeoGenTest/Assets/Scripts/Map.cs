@@ -51,7 +51,7 @@ public static class Map
 	}
 
 	public static Vector2 Dimensions
-	{x
+	{
 		get
 		{
 			return new Vector2(Tiles.GetLength(0), Tiles.GetLength(1));

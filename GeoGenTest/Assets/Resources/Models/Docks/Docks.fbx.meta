@@ -1,0 +1,163 @@
+fileFormatVersion: 2
+guid: 3102e88b9bb42dd47bc1016ee58b71da
+timeCreated: 1459084960
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Collision.000
+    100002: Collision.001
+    100004: Collision.002
+    100006: Collision.006
+    100008: Collision.008
+    100010: Collision.012
+    100012: Collision.013
+    100014: Collision.014
+    100016: Collision.020
+    100018: Collision.021
+    100020: Collision.023
+    100022: Collision.024
+    100024: Collision.046
+    100026: Collision.061
+    100028: Collision.140
+    100030: Collision.171
+    100032: Collision.217
+    100034: //RootNode
+    100036: Lamp
+    100038: Plate6x6.011
+    400000: Collision.000
+    400002: Collision.001
+    400004: Collision.002
+    400006: Collision.006
+    400008: Collision.008
+    400010: Collision.012
+    400012: Collision.013
+    400014: Collision.014
+    400016: Collision.020
+    400018: Collision.021
+    400020: Collision.023
+    400022: Collision.024
+    400024: Collision.046
+    400026: Collision.061
+    400028: Collision.140
+    400030: Collision.171
+    400032: Collision.217
+    400034: //RootNode
+    400036: Lamp
+    400038: Plate6x6.011
+    2300000: Collision.000
+    2300002: Collision.001
+    2300004: Collision.002
+    2300006: Collision.006
+    2300008: Collision.008
+    2300010: Collision.012
+    2300012: Collision.013
+    2300014: Collision.014
+    2300016: Collision.020
+    2300018: Collision.021
+    2300020: Collision.023
+    2300022: Collision.024
+    2300024: Collision.046
+    2300026: Collision.061
+    2300028: Collision.140
+    2300030: Collision.171
+    2300032: Collision.217
+    2300034: Plate6x6.011
+    3300000: Collision.000
+    3300002: Collision.001
+    3300004: Collision.002
+    3300006: Collision.006
+    3300008: Collision.008
+    3300010: Collision.012
+    3300012: Collision.013
+    3300014: Collision.014
+    3300016: Collision.020
+    3300018: Collision.021
+    3300020: Collision.023
+    3300022: Collision.024
+    3300024: Collision.046
+    3300026: Collision.061
+    3300028: Collision.140
+    3300030: Collision.171
+    3300032: Collision.217
+    3300034: Plate6x6.011
+    4300000: Collision.024
+    4300002: Collision.023
+    4300004: Collision.021
+    4300006: Collision.020
+    4300008: Collision.013
+    4300010: Collision.012
+    4300012: Collision.008
+    4300014: Collision.006
+    4300016: Collision.002
+    4300018: Collision.000
+    4300020: Collision.217
+    4300022: Collision.171
+    4300024: Collision.061
+    4300026: Collision.046
+    4300028: Collision.014
+    4300030: Collision.001
+    4300032: Collision.140
+    4300034: Plate6x6.011
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
