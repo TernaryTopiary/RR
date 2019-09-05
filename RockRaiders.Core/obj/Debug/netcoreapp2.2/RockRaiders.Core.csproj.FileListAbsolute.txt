@@ -1,0 +1,9 @@
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Core\bin\Debug\netcoreapp2.2\RockRaiders.Core.deps.json
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Core\bin\Debug\netcoreapp2.2\RockRaiders.Core.dll
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Core\bin\Debug\netcoreapp2.2\RockRaiders.Core.pdb
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Core\obj\Debug\netcoreapp2.2\RockRaiders.Core.csprojAssemblyReference.cache
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Core\obj\Debug\netcoreapp2.2\RockRaiders.Core.csproj.CoreCompileInputs.cache
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Core\obj\Debug\netcoreapp2.2\RockRaiders.Core.AssemblyInfoInputs.cache
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Core\obj\Debug\netcoreapp2.2\RockRaiders.Core.AssemblyInfo.cs
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Core\obj\Debug\netcoreapp2.2\RockRaiders.Core.dll
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Core\obj\Debug\netcoreapp2.2\RockRaiders.Core.pdb

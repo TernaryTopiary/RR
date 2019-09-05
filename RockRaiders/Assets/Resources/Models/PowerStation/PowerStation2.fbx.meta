@@ -1,0 +1,172 @@
+fileFormatVersion: 2
+guid: cb9783b8656e0dd4d946772be49754d5
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Collision.002
+    100002: Plate6x6.004
+    100004: Plate6x6.005
+    100006: Plate6x6.006
+    100008: Plate6x6.008
+    100010: Plate6x6.012
+    100012: Plate6x6.019
+    100014: //RootNode
+    100016: Sun.001
+    400000: Collision.002
+    400002: Plate6x6.004
+    400004: Plate6x6.005
+    400006: Plate6x6.006
+    400008: Plate6x6.008
+    400010: Plate6x6.012
+    400012: Plate6x6.019
+    400014: //RootNode
+    400016: Sun.001
+    2300000: Collision.002
+    2300002: Plate6x6.004
+    2300004: Plate6x6.005
+    2300006: Plate6x6.006
+    2300008: Plate6x6.008
+    2300010: Plate6x6.012
+    2300012: Plate6x6.019
+    3300000: Collision.002
+    3300002: Plate6x6.004
+    3300004: Plate6x6.005
+    3300006: Plate6x6.006
+    3300008: Plate6x6.008
+    3300010: Plate6x6.012
+    3300012: Plate6x6.019
+    4300000: Collision.002
+    4300002: Plate6x6.006
+    4300004: Plate6x6.005
+    4300006: Plate6x6.004
+    4300008: Plate6x6.019
+    4300010: Plate6x6.008
+    4300012: Plate6x6.012
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blaq
+    second: {fileID: 2100000, guid: 9202157bd49c6a849b86d651b7bcb6e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chevron
+    second: {fileID: 2100000, guid: 16e6635f980b9964a8b518ddb25f10e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DGrayStud
+    second: {fileID: 2100000, guid: 7a787e7cbc8c2da4fbf697a89bfc4097, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GenericGray
+    second: {fileID: 2100000, guid: d88fe56eceb037b47b8a2d59e72678e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GrayStud
+    second: {fileID: 2100000, guid: 29b645706ffc8ce4db73c8648ea9ad00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightGray
+    second: {fileID: 2100000, guid: 87cd3bd84e7d4e840b25fd13614286c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TransCrystal
+    second: {fileID: 2100000, guid: 00687e5e280a7354894a582ae7d0528d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WarningStripe
+    second: {fileID: 2100000, guid: 4f03fd3dacc0a5b4abca30a716d44221, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow
+    second: {fileID: 2100000, guid: 036befcd870d1f24783d3705ee00c021, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
