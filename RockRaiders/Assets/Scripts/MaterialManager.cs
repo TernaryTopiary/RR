@@ -115,5 +115,10 @@ namespace Assets.Scripts
                 throw new KeyNotFoundException($"Unable to find matching material for name \"{materialName}\"");
             return material;
         }
+
+        public static Material GetMaterial(this Tile tile)
+        {
+            return MaterialManager.GetMaterialForTile(tile);
+        }
     }
 }

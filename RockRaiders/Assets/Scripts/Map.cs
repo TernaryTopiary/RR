@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class Map
+    public class Map : IMap
     {
         private Vector2 _dimensions;
         public Camera Camera { get; set; }
@@ -68,21 +68,23 @@ namespace Assets.Scripts
             if (primaryCompassPointTiles.All(t => t.IsWall)) return TileConfiguration.Ceiling;
 
             var formations = WellKnownTileFormations.WallConfigurationLayoutMap.SelectMany(kv =>
-                kv.Value.Select(formation => new Tuple<TileConfiguration, CompassOrientation[]>(kv.Key, formation))).OrderByDescending(kv => kv.Item2.Length);
+                kv.Value.Select(formation => new { kv.Key, Formation = formation })).OrderByDescending(kv => kv.Formation.Length);
 
-            Tuple<TileConfiguration, CompassOrientation[]> bestMatchingFormation = null;
+            var bestMatchingFormation = formations.FirstOrDefault(); // take the type.
+            bestMatchingFormation = null;
+
             var tempNeighbors = neighboringTiles.Clone();
             orientation = CornerOrientation.NorthWest;
             for (var i = 0; i < 4; i++)
             {
-                var matchingFormation = formations.FirstOrDefault(formation => tempNeighbors.SubsetMeetsCriteria(tile => tile.IsGround, formation.Item2));
-                if (matchingFormation != null && matchingFormation.Item2.Length >= WellKnownTileFormations.UnambiguityLimit) return matchingFormation.Item1;
-                if (matchingFormation != null && (bestMatchingFormation == null || matchingFormation.Item2.Length > bestMatchingFormation.Item2.Length)) bestMatchingFormation = matchingFormation;
+                var matchingFormation = formations.FirstOrDefault(formation => tempNeighbors.SubsetMeetsCriteria(tile => tile.IsGround, formation.Formation));
+                if (matchingFormation != null && matchingFormation.Formation.Length >= WellKnownTileFormations.UnambiguityLimit) return matchingFormation.Key;
+                if (matchingFormation != null && (bestMatchingFormation == null || matchingFormation.Formation.Length > bestMatchingFormation.Formation.Length)) bestMatchingFormation = matchingFormation;
                 tempNeighbors = tempNeighbors.Rotate(RotationalOrientation.Clockwise);
                 orientation = orientation.Value.Rotate(RotationalOrientation.Clockwise);
             }
 
-            return bestMatchingFormation?.Item1 ?? throw new ArgumentException();
+            return bestMatchingFormation?.Key ?? throw new ArgumentException();
         }
 
         public KeyValuePair<Tile, GameObject> this[Vector2 position]
@@ -199,7 +201,7 @@ namespace Assets.Scripts
             var textMesh = textObject.AddComponent<TextMesh>();
             textMesh.text = str;
             textMesh.characterSize = .05f;
-            if(color.HasValue) textMesh.color = color.Value;
+            if (color.HasValue) textMesh.color = color.Value;
         }
     }
 }

@@ -1,0 +1,132 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Tests\\RockRaiders.Tests.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Core\\RockRaiders.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Core\\RockRaiders.Core.csproj",
+        "projectName": "RockRaiders.Core",
+        "projectPath": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Core\\RockRaiders.Core.csproj",
+        "packagesPath": "C:\\Users\\Rune\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Rune\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Rune\\AppData\\Local\\Xenko\\NugetDev": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packages.xenko.com/nuget": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Tests\\RockRaiders.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Tests\\RockRaiders.Tests.csproj",
+        "projectName": "RockRaiders.Tests",
+        "projectPath": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Tests\\RockRaiders.Tests.csproj",
+        "packagesPath": "C:\\Users\\Rune\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Rune\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Rune\\AppData\\Local\\Xenko\\NugetDev": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packages.xenko.com/nuget": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Core\\RockRaiders.Core.csproj": {
+                "projectPath": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Core\\RockRaiders.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.0.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

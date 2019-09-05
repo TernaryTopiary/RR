@@ -7,18 +7,20 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using RockRaiders.Tests.Concepts.Gameplay.Map.Components;
 using UnityEngine;
+using Assets.Scripts;
 
 namespace RockRaiders.Tests.Concepts.Gameplay.Map
 {
+
     [TestClass]
     public class MapTests
     {
-        public Assets.Scripts.Map Map { get; set; }
+        public IMap Map { get; set; }
 
         [TestInitialize]
         public void Initialize()
         {
-            Map = new Assets.Scripts.Map
+            Map = new FakeMap
             {
                 Dimensions = new Vector2(6, 6)
             };
