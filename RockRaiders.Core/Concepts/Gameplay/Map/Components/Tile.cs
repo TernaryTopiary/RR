@@ -125,45 +125,10 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         public TileConfiguration Configuration { get; set; } = TileConfiguration.Ceiling;
         public float OriginalTileHeight { get; set; }
 
-        public new string ToString() => TileType.GetType().Name + " " + $"{string.Join(", ", Verticies)}";
+        public new string ToString() => $"{string.Join(", ", Verticies)}";
     }
 
     public static class TileExtensions
     {
-        public static void SetVertexHeightsFromNeighbors(this Tile tile, AdjoiningTilesGrid9 neighbors)
-        {
-            var color = UnityEngine.Random.ColorHSV();
-
-            foreach (var cornerOrientation in Enum.GetValues(typeof(CornerOrientation)).OfType<CornerOrientation>())
-            {
-                var vert = tile.GetVertexAt(cornerOrientation);
-                var cornerQuad = neighbors[cornerOrientation];
-
-                float GetTileHeight(Tile t)
-                {
-                    if (t == null) return 0;
-                    return t.IsCeiling ? t.OriginalTileHeight + Tile.DefaultTileVerticalHeight : t.OriginalTileHeight;
-                }
-
-                var quadTileHeights = cornerQuad.Tiles.Select(GetTileHeight).ToArray();
-                var averageTileHeight = quadTileHeights.Average(f => f);
-                var averageCornerTileHeight = averageTileHeight;
-                tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, averageCornerTileHeight, vert.z));
-
-                //if (yes < 4)
-                {
-                    var compassOr = cornerOrientation.ToCompassOrientation();
-                    var nudge = -compassOr.ToOffsetVector3().normalized;
-
-                    Debug.DrawLine(vert, vert + nudge, color, 20);
-                    //Scripts.Map.DrawTextAtLocation($"{cornerOrientation.ToPrefix()}: {averageCornerTileHeight.ToString()}", 
-                    //    tile.GetVertexAt(cornerOrientation)/* + (nudge.normalized * 0.2f)*/, color);
-
-                    //yes = yes + 1;
-                }
-            }
-        }
-
-        public static int yes = 0;
     }
 }

@@ -6,6 +6,7 @@ using Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using RockRaiders.Tests.Concepts.Gameplay.Map.Components;
+using Assets.Scripts.Concepts.Gameplay.Map.Components;
 using UnityEngine;
 using Assets.Scripts;
 

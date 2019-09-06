@@ -1620,6 +1620,16 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
+      "RockRaiders/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/RockRaiders.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RockRaiders.dll": {}
+        }
+      },
       "RockRaiders.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -5824,6 +5834,11 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
+    "RockRaiders/1.0.0": {
+      "type": "project",
+      "path": "../RockRaiders/RockRaiders.csproj",
+      "msbuildProject": "../RockRaiders/RockRaiders.csproj"
+    },
     "RockRaiders.Core/1.0.0": {
       "type": "project",
       "path": "../RockRaiders.Core/RockRaiders.Core.csproj",
@@ -5836,6 +5851,7 @@
       "MSTest.TestFramework >= 1.4.0",
       "Microsoft.NET.Test.Sdk >= 16.0.1",
       "Microsoft.NETCore.App >= 2.2.0",
+      "RockRaiders >= 1.0.0",
       "RockRaiders.Core >= 1.0.0"
     ]
   },
@@ -5873,6 +5889,9 @@
           "projectReferences": {
             "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Core\\RockRaiders.Core.csproj": {
               "projectPath": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders.Core\\RockRaiders.Core.csproj"
+            },
+            "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders\\RockRaiders.csproj": {
+              "projectPath": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\RockRaiders\\RockRaiders.csproj"
             }
           }
         }

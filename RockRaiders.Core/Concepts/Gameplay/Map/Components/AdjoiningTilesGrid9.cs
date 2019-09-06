@@ -6,13 +6,13 @@ using System.Linq;
 
 namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 {
-    public class AdjoiningTilesGrid9
+    public class AdjoiningTilesGrid9 : Dictionary<CompassOrientation, Tile>
     {
-        public List<Tile> AdjoiningTiles { get; } = new List<Tile>(9);
+        public List<Tile> AdjoiningTiles => Values.ToList();
 
         public Tile Center
         {
-            get { return AdjoiningTiles[(int)CompassOrientation.None]; }
+            get { return this[CompassOrientation.None]; }
         }
 
         public IEnumerable<Tile> Adjoining
@@ -20,14 +20,9 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             get { return AdjoiningTiles.Except(Center); }
         }
 
-        public AdjoiningTilesGrid9(IEnumerable<Tile> adjoiningTiles)
+        public AdjoiningTilesGrid9(IEnumerable<KeyValuePair<CompassOrientation, Tile>> adjoiningTiles)
         {
-            AdjoiningTiles.AddRange(adjoiningTiles.Take(9));
-        }
-
-        public Tile this[CompassOrientation orientation]
-        {
-            get { return AdjoiningTiles[(int)orientation]; }
+            foreach(var tile in adjoiningTiles) this[tile.Key] = tile.Value;
         }
 
         public AdjoiningTilesGrid4 this[CornerOrientation orientation]
@@ -50,7 +45,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 
         public AdjoiningTilesGrid9 Clone()
         {
-            return new AdjoiningTilesGrid9(AdjoiningTiles.ToArray());
+            return new AdjoiningTilesGrid9(this);
         }
 
         public AdjoiningTilesGrid9 Rotate(RotationalOrientation rotationalOrientation, byte amount = 90)
@@ -59,32 +54,8 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             {
                 case 90:
                 {
-                    return new AdjoiningTilesGrid9(rotationalOrientation == RotationalOrientation.Clockwise ?
-                        new[]
-                        {
-                            this[CompassOrientation.SouthWest],
-                            this[CompassOrientation.West],
-                            this[CompassOrientation.NorthWest],
-                            this[CompassOrientation.South],
-                            this[CompassOrientation.None],
-                            this[CompassOrientation.North],
-                            this[CompassOrientation.SouthEast],
-                            this[CompassOrientation.East],
-                            this[CompassOrientation.NorthEast]
-                        } :
-                        new[]
-                        {
-                            this[CompassOrientation.NorthEast],
-                            this[CompassOrientation.East],
-                            this[CompassOrientation.SouthEast],
-                            this[CompassOrientation.North],
-                            this[CompassOrientation.None],
-                            this[CompassOrientation.South],
-                            this[CompassOrientation.NorthWest],
-                            this[CompassOrientation.West],
-                            this[CompassOrientation.SouthWest]
-                        });
-                    }
+                    return new AdjoiningTilesGrid9(this.Select(kv => new KeyValuePair<CompassOrientation, Tile>(kv.Key.Rotate(rotationalOrientation), kv.Value)));
+                }
                 default:
                 throw new NotImplementedException();
             }

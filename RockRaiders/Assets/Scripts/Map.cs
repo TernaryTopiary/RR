@@ -120,9 +120,8 @@ namespace Assets.Scripts
         public AdjoiningTilesGrid9 GetNeighboringTiles(Vector2 position)
         {
             var orientations = Enum.GetValues(typeof(CompassOrientation)).OfType<CompassOrientation>().ToList();
-            var order = orientations.Select(or => (int)or).ToList();
-            var offsets = orientations.Select(o => o.ToOffsetVector2()).ToList();
-            return new AdjoiningTilesGrid9(offsets.Select(o => GetTileAtPosition(position + o, false)));
+            var offsets = orientations.Select(o => new {Orientation = o, Offset = o.ToOffsetVector2()}).ToList();
+            return new AdjoiningTilesGrid9(offsets.ToDictionary(pair => pair.Orientation, pair => GetTileAtPosition(position + pair.Offset, false)));
         }
 
         public void CalculateTileConfigurations()
