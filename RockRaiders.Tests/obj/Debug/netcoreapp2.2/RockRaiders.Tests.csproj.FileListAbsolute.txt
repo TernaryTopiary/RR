@@ -10,7 +10,6 @@ C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcore
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\RockRaiders.Tests.runtimeconfig.dev.json
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\RockRaiders.Tests.dll
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\RockRaiders.Tests.pdb
-C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\RockRaiders.Core.dll
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\UnityEditor.dll
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\UnityEngine.dll
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\Unity.Cecil.dll
@@ -22,9 +21,10 @@ C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcore
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\Unity.CecilTools.dll
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\Unity.Cecil.Pdb.dll
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\Unity.Cecil.Mdb.dll
-C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\RockRaiders.Core.pdb
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\UnityEditor.xml
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\UnityEngine.xml
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\obj\Debug\netcoreapp2.2\RockRaiders.Tests.csproj.CopyComplete
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\obj\Debug\netcoreapp2.2\RockRaiders.Tests.dll
 C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\obj\Debug\netcoreapp2.2\RockRaiders.Tests.pdb
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\RockRaiders.dll
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\RockRaiders.Tests\bin\Debug\netcoreapp2.2\RockRaiders.pdb

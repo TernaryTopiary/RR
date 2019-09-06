@@ -5,6 +5,7 @@ using Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall;
 using Assets.Scripts.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RockRaiders.Tests.Concepts.Gameplay.Map.Components
@@ -15,31 +16,54 @@ namespace RockRaiders.Tests.Concepts.Gameplay.Map.Components
         [TestMethod]
         public void TileGrid9_Get_ShouldGet()
         {
-            var grid = new AdjoiningTilesGrid9(new[] { new Tile(), null, null, null, null, null, null, null, null });
+            var grid = new AdjoiningTilesGrid9(new List<KeyValuePair<CompassOrientation, Tile>> { new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.NorthWest, new Tile()) });
 
             Assert.IsNotNull(grid[CompassOrientation.NorthWest]);
-            Enum.GetValues(typeof(CompassOrientation)).OfType<CompassOrientation>().Except(CompassOrientation.NorthWest).ForEach(o => Assert.IsNull(grid[o]));
+            Enum.GetValues(typeof(CompassOrientation)).OfType<CompassOrientation>().Except(CompassOrientation.NorthWest).ForEach(o => Assert.IsFalse(grid.ContainsKey(o)));
         }
 
         [TestMethod]
-        public void TileGrid9_Rotate_ShouldGet()
+        public void TileGrid9_RotateClockwise_ShouldGet()
         {
-            var grid = new AdjoiningTilesGrid9(new[] { new Tile(), null, null, null, null, new Tile() { TileType = TileWallSolidRock.GetInstance() }, null, null, new Tile() { TileType = TileWallSolidRock.GetInstance() } });
-
+            // Arrange
+            var grid = new AdjoiningTilesGrid9(new List<KeyValuePair<CompassOrientation, Tile>> {
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.NorthWest, new Tile()),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.East, new Tile(){ TileType = TileWallSolidRock.GetInstance() }),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.SouthEast, new Tile(){ TileType = TileWallSolidRock.GetInstance() }),
+            });
             var original = grid.Clone();
+
+            // Act
             grid = grid.Rotate(RotationalOrientation.Clockwise);
 
+            // Assert
             Assert.IsNotNull(grid[CompassOrientation.NorthEast]);
             Assert.IsNotNull(grid[CompassOrientation.South]);
             Assert.IsNotNull(grid[CompassOrientation.SouthWest]);
             Enum.GetValues(typeof(CompassOrientation)).OfType<CompassOrientation>().Except(
                 new[]{ CompassOrientation.NorthEast,
                     CompassOrientation.South,
-                    CompassOrientation.SouthWest }).ForEach(o => Assert.IsNull(grid[o]));
+                    CompassOrientation.SouthWest }).ForEach(o => Assert.IsFalse(grid.ContainsKey(o)));
+        }
 
+        [TestMethod]
+        public void TileGrid9_RotateAnticlockwise_ShouldGet()
+        {
+            // Arrange
+            var grid = new AdjoiningTilesGrid9(new List<KeyValuePair<CompassOrientation, Tile>> {
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.NorthWest, new Tile()),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.East, new Tile(){ TileType = TileWallSolidRock.GetInstance() }),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.SouthEast, new Tile(){ TileType = TileWallSolidRock.GetInstance() }),
+            });
+            var original = grid.Clone();
+
+            // Act
+            grid = grid.Rotate(RotationalOrientation.Clockwise);
+            // Rotate back and test that that works too.
             grid = grid.Rotate(RotationalOrientation.Anticlockwise);
 
-            Enum.GetValues(typeof(CompassOrientation)).OfType<CompassOrientation>().ForEach(o => Assert.IsTrue(grid[o] == original[o]));
+            // Assert
+            Assert.IsTrue(original.All(kv => grid.TryGetValue(kv.Key, out var value) && kv.Value == value));
         }
 
         [TestMethod]
@@ -55,7 +79,17 @@ namespace RockRaiders.Tests.Concepts.Gameplay.Map.Components
             var t8 = new Tile() { TileType = TileWallLooseRock.GetInstance() };
             var t9 = new Tile() { TileType = TileWallLooseRock.GetInstance() };
 
-            var grid = new AdjoiningTilesGrid9(new[] { t1, t2, t3, t4, t5, t6, t7, t8, t9 });
+            var grid = new AdjoiningTilesGrid9(new List<KeyValuePair<CompassOrientation, Tile>> {
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.NorthWest, t1),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.North,     t2),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.NorthEast, t3),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.West,      t4),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.None,      t5),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.East,      t6),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.SouthWest, t7),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.South,     t8),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.SouthEast, t9),
+            });
 
             var quad = grid[CornerOrientation.NorthWest];
             Assert.AreEqual(t1, quad.Tiles[0]);
