@@ -3,6 +3,7 @@ using Assets.Scripts.Concepts.Gameplay.Map.Components;
 using Assets.Scripts.Concepts.Gameplay.Map.TileType;
 using Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall;
 using System;
+using Assets.Scripts.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Concepts.Constants;
@@ -65,10 +66,10 @@ namespace Assets.Scripts
 
             orientation = null;
             if (neighboringTiles.Center.IsGround) return TileConfiguration.Ground;
-            if (primaryCompassPointTiles.All(t => t.IsWall)) return TileConfiguration.Ceiling;
+            if (neighboringTiles.Values.All(t => t.IsWall)) return TileConfiguration.Ceiling;
 
             var formations = WellKnownTileFormations.WallConfigurationLayoutMap.SelectMany(kv =>
-                kv.Value.Select(formation => new { kv.Key, Formation = formation })).OrderByDescending(kv => kv.Formation.Length);
+                kv.Value.Select(formation => new { kv.Key, Formation = formation })).OrderByDescending(kv => kv.Formation.Length).ToArray();
 
             var bestMatchingFormation = formations.FirstOrDefault(); // take the type.
             bestMatchingFormation = null;
@@ -130,6 +131,8 @@ namespace Assets.Scripts
             {
                 for (var y = 0; y < _dimensions.y; ++y)
                 {
+                    if (x == 4 && y == 55)
+                        Console.WriteLine("");
                     Tiles2D[x, y].Configuration = GetTileConfiguration(new Vector2(x, y), out var orientation);
                     //TODO: Cache orientation??
                 }
@@ -160,22 +163,22 @@ namespace Assets.Scripts
 
         public void CalculateTileHeights()
         {
-            // Set initial tile basic heights based on tile nature (ceiling, or floor).
-            for (var x = 0; x < _dimensions.x; ++x)
-            {
-                for (var y = 0; y < _dimensions.y; ++y)
-                {
-                    var tile = Tiles2D[x, y];
-                    if (tile.IsCeiling)
-                    {
-                        foreach (var cornerOrientation in Enum.GetValues(typeof(CornerOrientation)).OfType<CornerOrientation>())
-                        {
-                            var vert = tile.GetVertexAt(cornerOrientation);
-                            tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, Tile.DefaultTileVerticalHeight, vert.z));
-                        }
-                    }
-                }
-            }
+            //// Set initial tile basic heights based on tile nature (ceiling, or floor).
+            //for (var x = 0; x < _dimensions.x; ++x)
+            //{
+            //    for (var y = 0; y < _dimensions.y; ++y)
+            //    {
+            //        var tile = Tiles2D[x, y];
+            //        if (tile.IsCeiling)
+            //        {
+            //            foreach (var cornerOrientation in Enum.GetValues(typeof(CornerOrientation)).OfType<CornerOrientation>())
+            //            {
+            //                var vert = tile.GetVertexAt(cornerOrientation);
+            //                tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, Tile.DefaultTileVerticalHeight, vert.z));
+            //            }
+            //        }
+            //    }
+            //}
 
             // Mesh the tiles.
             for (var x = 0; x < _dimensions.x; ++x)
@@ -183,10 +186,21 @@ namespace Assets.Scripts
                 for (var y = 0; y < _dimensions.y; ++y)
                 {
                     var tile = Tiles2D[x, y];
-                    if (!tile.IsActiveWall) continue;
-                    if (x == 5 && y == 12)
+                    //if (!tile.IsActiveWall) continue;
+                    if (x == 4 && y == 55)
                         Debug.DrawLine(tile.GetVertexAt(CornerOrientation.NorthWest), tile.GetVertexAt(CornerOrientation.NorthWest) + new Vector3(0, 10, 0), Color.red, 20);
                     var neighbors = GetNeighboringTiles(new Vector2(x, y));
+
+                    //foreach (var cornerOrientation in Enum.GetValues(typeof(CornerOrientation)).OfType<CornerOrientation>())
+                    //{
+                    //    var decomposed = cornerOrientation.ToCandidateOrientations().Except(CompassOrientation.None);
+                    //    var cornerTiles = decomposed.ToDictionary(or => or, or => neighbors[or]);
+
+                    //    var vert = tile.GetVertexAt(cornerOrientation);
+                    //    tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, Tile.DefaultTileVerticalHeight, vert.z));
+                    //}
+
+
                     tile.SetVertexHeightsFromNeighbors(neighbors);
                 }
             }

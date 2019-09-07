@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Assets.Scripts.Concepts.Gameplay.Map.Components;
 using Assets.Scripts.Concepts.Cosmic.Space;
+using Assets.Scripts.Extensions;
 
 namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 {
@@ -19,27 +20,31 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             foreach (var cornerOrientation in Enum.GetValues(typeof(CornerOrientation)).OfType<CornerOrientation>())
             {
                 var vert = tile.GetVertexAt(cornerOrientation);
-                var cornerQuad = neighbors[cornerOrientation];
 
+                if (tile.IsCeiling)
+                {
+                    tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, vert.y + Tile.DefaultTileVerticalHeight, vert.z));
+                    continue;
+                }
+                
                 float GetTileHeight(Tile t)
                 {
                     if (t == null) return 0;
                     return t.IsCeiling ? t.OriginalTileHeight + Tile.DefaultTileVerticalHeight : t.OriginalTileHeight;
                 }
 
-                var quadTileHeights = cornerQuad.Tiles.Select(GetTileHeight).ToArray();
-                var averageTileHeight = quadTileHeights.Average(f => f);
-                var averageCornerTileHeight = averageTileHeight;
-                tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, averageCornerTileHeight, vert.z));
+                var decomposed = cornerOrientation.ToCandidateOrientations().Where(or => Enum.TryParse<CompassAxisOrientation>(or.ToString(), out _));//.Except(CompassOrientation.None);
+                var cornerTiles = decomposed.ToDictionary(or => or, or => neighbors[or]);
+                if (cornerTiles.Values.Any(t => t.IsCeiling)) tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, vert.y + Tile.DefaultTileVerticalHeight, vert.z));
 
                 //if (yes < 4)
                 {
                     var compassOr = cornerOrientation.ToCompassOrientation();
                     var nudge = -compassOr.ToOffsetVector3().normalized;
 
-                    Debug.DrawLine(vert, vert + nudge, color, 20);
-                    DrawTextAtLocation($"{cornerOrientation.ToPrefix()}: {averageCornerTileHeight.ToString()}",
-                        tile.GetVertexAt(cornerOrientation)/* + (nudge.normalized * 0.2f)*/, color);
+                    Debug.DrawLine(vert, vert + (nudge * 0.2f), color, 20);
+                    DrawTextAtLocation($"{cornerOrientation.ToPrefix()}: {vert.y + Tile.DefaultTileVerticalHeight.ToString()}",
+                        vert + (nudge * 0.2f), color);
 
                     //yes = yes + 1;
                 }

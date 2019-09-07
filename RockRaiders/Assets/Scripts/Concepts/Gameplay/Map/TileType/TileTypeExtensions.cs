@@ -105,7 +105,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType
     {
         public static Dictionary<TileTypeImportMap, ITileType> TileTypeMap = new Dictionary<TileTypeImportMap, ITileType>
         {
-            { TileTypeImportMap.Soil, new TileWallSoil()},
+            { TileTypeImportMap.Soil, new TileTypeGroundSoil()},
             { TileTypeImportMap.Dirt, new TileWallDirt()},
             { TileTypeImportMap.Loose, new TileWallLooseRock()},
             { TileTypeImportMap.Hard, new TileWallHardRock()},

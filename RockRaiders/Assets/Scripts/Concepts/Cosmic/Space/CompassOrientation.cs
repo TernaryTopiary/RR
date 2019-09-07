@@ -23,23 +23,23 @@ namespace Assets.Scripts.Concepts.Cosmic.Space
             switch (orientation)
             {
                 case CompassOrientation.NorthWest:
-                    return new Vector2(1, 1);
+                    return new Vector2(-1, 1);
                 case CompassOrientation.North:
                     return new Vector2(0, 1);
                 case CompassOrientation.NorthEast:
-                    return new Vector2(-1, 1);
+                    return new Vector2(1, 1);
                 case CompassOrientation.West:
-                    return new Vector2(1, 0);
+                    return new Vector2(-1, 0);
                 case CompassOrientation.None:
                     return new Vector2(0, 0);
                 case CompassOrientation.East:
-                    return new Vector2(-1, 0);
+                    return new Vector2(1, 0);
                 case CompassOrientation.SouthWest:
-                    return new Vector2(1, -1);
+                    return new Vector2(-1, -1);
                 case CompassOrientation.South:
                     return new Vector2(0, -1);
                 case CompassOrientation.SouthEast:
-                    return new Vector2(-1, -1);
+                    return new Vector2(1, -1);
                 //case CompassOrientation.NorthWest:
                 //    return new Vector2(-1, -1);
                 //case CompassOrientation.North:
@@ -91,6 +91,30 @@ namespace Assets.Scripts.Concepts.Cosmic.Space
                     return rotationalOrientation == RotationalOrientation.Clockwise ? CompassOrientation.SouthWest : CompassOrientation.SouthEast;
                 case CompassOrientation.SouthEast:
                     return rotationalOrientation == RotationalOrientation.Clockwise ? CompassOrientation.South : CompassOrientation.East;
+            }
+            throw new ArgumentException();
+        }
+
+        public static CompassOrientation Opposite(this CompassOrientation orientation)
+        {
+            switch (orientation)
+            {
+                case CompassOrientation.NorthWest:
+                    return CompassOrientation.SouthEast;
+                case CompassOrientation.North:
+                    return CompassOrientation.South;
+                case CompassOrientation.NorthEast:
+                    return CompassOrientation.SouthWest;
+                case CompassOrientation.West:
+                    return CompassOrientation.East;
+                case CompassOrientation.East:
+                    return CompassOrientation.West;
+                case CompassOrientation.SouthWest:
+                    return CompassOrientation.NorthEast;
+                case CompassOrientation.South:
+                    return CompassOrientation.North;
+                case CompassOrientation.SouthEast:
+                    return CompassOrientation.NorthWest;
             }
             throw new ArgumentException();
         }

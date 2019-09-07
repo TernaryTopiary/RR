@@ -8,8 +8,6 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 {
     public class AdjoiningTilesGrid9 : Dictionary<CompassOrientation, Tile>
     {
-        public List<Tile> AdjoiningTiles => Values.ToList();
-
         public Tile Center
         {
             get { return this[CompassOrientation.None]; }
@@ -17,7 +15,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 
         public IEnumerable<Tile> Adjoining
         {
-            get { return AdjoiningTiles.Except(Center); }
+            get { return Values.Except(Center); }
         }
 
         public AdjoiningTilesGrid9(IEnumerable<KeyValuePair<CompassOrientation, Tile>> adjoiningTiles)
@@ -27,7 +25,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 
         public AdjoiningTilesGrid4 this[CornerOrientation orientation]
         {
-            get { return new AdjoiningTilesGrid4(orientation.ToCandidateOrientations().Select(o => AdjoiningTiles[(int)o])); }
+            get { return new AdjoiningTilesGrid4(orientation.ToCandidateOrientations().Select(subOrientation => this[subOrientation])); }
         }
 
         public IEnumerable<Tile> GetByOrientation(params CompassOrientation[] orientations)
@@ -38,9 +36,8 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 
         public bool SubsetMeetsCriteria(Func<Tile, bool> filter, params CompassOrientation[] orientationsToCheck)
         {
-            var indicies = orientationsToCheck.Select(o => (int) o).Distinct();
-            if (!indicies.Any()) throw new ArgumentException("No orientations to check.");
-            return indicies.All(index => filter(AdjoiningTiles[index]));
+            if (!orientationsToCheck.Any()) throw new ArgumentException("No orientations to check.");
+            return orientationsToCheck.Distinct().All(orientation => filter(this[orientation]));
         }
 
         public AdjoiningTilesGrid9 Clone()
@@ -59,6 +56,11 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
                 default:
                 throw new NotImplementedException();
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Join(",\n", this.Select(kv => $"{kv.Key}, {kv.Value.ToString()}").ToList());
         }
     }
 }

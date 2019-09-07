@@ -16,7 +16,7 @@ namespace Assets.Scripts
     {
         public Camera Camera;
 
-        private string MapFilePath = "F:\\Program Files (x86)\\Lego Rock Raiders\\LegoRR0\\Levels\\tute2.mcm";
+        private string MapFilePath = "F:\\Program Files (x86)\\Lego Rock Raiders\\LegoRR0\\Levels\\level12_waterworks.mcm";
 
         private const byte IndexTileType = 1;
         private const byte IndexTileHeight = 4;
@@ -83,13 +83,13 @@ namespace Assets.Scripts
 
         private void InitializeMapTiles(Map newMap, List<string[]> mapTileData)
         {
-            int x = 0, y = 0;
+            int x = 0, y = (int)newMap.Dimensions.y - 1;
             foreach (var tileData in mapTileData)
             {
                 try
                 {
                     var tile = InitializeMapTile(tileData);
-                    tile.SetTileLocation(new Vector2(-x, y));
+                    tile.SetTileLocation(new Vector2(x, y));
 
                     // TODO: REMOVE AND READ FROM FILE
                     tile.TileType.Biome = TileBiomeRock.GetInstance();
@@ -104,7 +104,7 @@ namespace Assets.Scripts
                 x++;
                 if (x != newMap.Dimensions.x) continue;
                 x = 0;
-                y++;
+                y--;
             }
 
             newMap.CalculateTileConfigurations();

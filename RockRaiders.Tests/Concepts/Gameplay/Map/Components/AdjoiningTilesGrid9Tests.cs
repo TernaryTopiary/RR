@@ -23,6 +23,26 @@ namespace RockRaiders.Tests.Concepts.Gameplay.Map.Components
         }
 
         [TestMethod]
+        public void TileGrid9_Rotate_ShouldntTouchOriginal()
+        {
+            // Arrange
+            var grid = new AdjoiningTilesGrid9(new List<KeyValuePair<CompassOrientation, Tile>> {
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.NorthWest, new Tile()),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.East, new Tile(){ TileType = TileWallSolidRock.GetInstance() }),
+                new KeyValuePair<CompassOrientation, Tile>(CompassOrientation.SouthEast, new Tile(){ TileType = TileWallSolidRock.GetInstance() }),
+            });
+            var original = grid.Clone();
+
+            // Act
+            grid = grid.Rotate(RotationalOrientation.Clockwise);
+
+            // Assert
+            Assert.IsNotNull(original[CompassOrientation.NorthWest]);
+            Assert.IsNotNull(original[CompassOrientation.East]);
+            Assert.IsNotNull(original[CompassOrientation.SouthEast]);
+        }
+
+        [TestMethod]
         public void TileGrid9_RotateClockwise_ShouldGet()
         {
             // Arrange
