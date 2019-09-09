@@ -8,6 +8,8 @@ using Assets.Scripts.Concepts.Gameplay.Map.TileType;
 using Assets.Scripts.Extensions;
 using UnityEditor;
 using UnityEngine;
+using Assets.Scripts.Concepts.Constants;
+using Assets.Scripts.Concepts.Gameplay.UI.Camera;
 
 namespace Assets.Scripts
 {
@@ -55,8 +57,8 @@ namespace Assets.Scripts
         {
             var newMap = new Map();
             InitializeObjective(newMap, rawMapData);
-            InitializeCamera(newMap, rawMapData);
             ParseBasicMapData(newMap, rawMapData);
+            InitializeCamera(newMap, rawMapData);
             return newMap;
         }
 
@@ -95,9 +97,7 @@ namespace Assets.Scripts
 
                     // TODO: REMOVE AND READ FROM FILE
                     tile.TileType.Biome = biome;
-
                     newMap.Tiles2D[x, y] = tile;
-                    //newMap.Tiles2D[((int) newMap.Dimensions.x - 1) - x, y] = tile;
                 }
                 catch (Exception exception)
                 {
@@ -154,16 +154,17 @@ namespace Assets.Scripts
 
             var camData = cameraLine.Split('|');
             var xpos = Convert.ToInt32(camData[2]) / 32f;
-            var ypos = Convert.ToInt32(camData[3]) / 32f;
-            var angle = Convert.ToInt32(camData.Last());
-            var campos = new Vector3(xpos, Map.DefaultCameraHeight, ypos);
+            var zpos = (mapData.Dimensions.y * Constants.TileScale) - (Convert.ToInt32(camData[3]) / 32f);       // RR y pos starts from top of map.
+            var angle = Convert.ToInt32(camData.Last()) - 90;   // RR angles start 90 degrees away.
+            var campos = new Vector3(xpos, Map.DefaultCameraHeight, zpos);
 
             // If the camera isn't overridden, look it up.
-            //if (Camera.main != null && Camera == null) Camera = Camera.main;
+            if (Camera.main != null && Camera == null) Camera = Camera.main;
             if (Camera != null)
             {
-                Camera.transform.RotateAround(campos, new Vector3(0, 1, 0), angle + 90);
+                Debug.DrawLine(campos, campos + Vector3.up, Color.green, 30f);
                 Camera.transform.localPosition = campos;
+                CameraManager.GetInstance().YRotationAngle = angle;
             }
             else Debug.Log("Error: Unable to get handle to main camera!");
         }

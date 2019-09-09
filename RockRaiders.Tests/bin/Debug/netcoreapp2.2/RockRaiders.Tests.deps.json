@@ -1,13 +1,14 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "db1f9d117a95dc559c072f54ce4c28a07e463bc2"
+    "signature": "ded06415377ca6e191b235d8f32ce035c7abb0bd"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.2": {
       "RockRaiders.Tests/1.0.0": {
         "dependencies": {
+          "Enums.NET": "2.3.2",
           "MSTest.TestAdapter": "1.4.0",
           "MSTest.TestFramework": "1.4.0",
           "Microsoft.NET.Test.Sdk": "16.0.1",
@@ -17,6 +18,17 @@
         },
         "runtime": {
           "RockRaiders.Tests.dll": {}
+        }
+      },
+      "Enums.NET/2.3.2": {
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.4.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Enums.NET.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.3.2.0"
+          }
         }
       },
       "Microsoft.CodeCoverage/16.0.1": {
@@ -483,6 +495,7 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.ComponentModel.Annotations/4.4.0": {},
       "System.ComponentModel.EventBasedAsync/4.0.11": {
         "dependencies": {
           "System.Resources.ResourceManager": "4.3.0",
@@ -1132,6 +1145,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Enums.NET/2.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rIPr6Ac8eu/j8p7j2NM2R+8aYj4vn1Yl6aiReX0srWYw4Jw/q/RmNThKyzIizzE8UJO6KWDZKrzPD9giD5u/ow==",
+      "path": "enums.net/2.3.2",
+      "hashPath": "enums.net.2.3.2.nupkg.sha512"
+    },
     "Microsoft.CodeCoverage/16.0.1": {
       "type": "package",
       "serviceable": true,
@@ -1271,6 +1291,13 @@
       "sha512": "sha512-oBZFnm7seFiVfugsIyOvQCWobNZs7FzqDV/B7tx20Ep/l3UUFCPDkdTnCNaJZTU27zjeODmy2C/cP60u3D4c9w==",
       "path": "system.componentmodel/4.0.1",
       "hashPath": "system.componentmodel.4.0.1.nupkg.sha512"
+    },
+    "System.ComponentModel.Annotations/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-29K3DQ+IGU7LBaMjTo7SI7T7X/tsMtLvz1p56LJ556Iu0Dw3pKZw5g8yCYCWMRxrOF0Hr0FU0FwW0o42y2sb3A==",
+      "path": "system.componentmodel.annotations/4.4.0",
+      "hashPath": "system.componentmodel.annotations.4.4.0.nupkg.sha512"
     },
     "System.ComponentModel.EventBasedAsync/4.0.11": {
       "type": "package",

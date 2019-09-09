@@ -11,11 +11,12 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+
     public class Map : IMap
     {
         private Vector2 _dimensions;
         public Camera Camera { get; set; }
-        public static float DefaultCameraHeight { get; set; } = 2.0f;
+        public static float DefaultCameraHeight { get; set; } = 3.0f;
         public Tile[,] Tiles2D { get; private set; }
         public GameObject[,] TileGameObjects2D { get; private set; }
 
@@ -148,11 +149,8 @@ namespace Assets.Scripts
             {
                 for (var y = 0; y < _dimensions.y; ++y)
                 {
-                    if (x == 4 && y == 54)
-                        Console.WriteLine("");
                     Tiles2D[x, y].Configuration = GetTileConfiguration(new Vector2(x, y), out var orientation);
                     Tiles2D[x, y].Orientation = orientation;
-                    //TODO: Cache orientation??
                 }
             }
         }
@@ -187,9 +185,6 @@ namespace Assets.Scripts
                 for (var y = 0; y < _dimensions.y; ++y)
                 {
                     var tile = Tiles2D[x, y];
-                    //if (!tile.IsActiveWall) continue;
-                    if (x == 4 && y == 54)
-                        Debug.DrawLine(tile.GetVertexAt(CornerOrientation.NorthWest), tile.GetVertexAt(CornerOrientation.NorthWest) + new Vector3(0, 10, 0), Color.red, 20);
                     var neighbors = GetNeighboringTiles(new Vector2(x, y));
 
                     tile.SetVertexHeightsFromNeighbors(neighbors);
