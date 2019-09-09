@@ -6,6 +6,7 @@ using System.Linq;
 using Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall;
 using Assets.Scripts.Extensions;
 using UnityEngine;
+using Assets.Scripts.Concepts.Gameplay.Building.Effects;
 
 namespace Assets.Scripts
 {
@@ -15,6 +16,12 @@ namespace Assets.Scripts
         {
             public static class Gameplay
             {
+                public static class Buildings
+                {
+                    public static Material TeleportFire;
+                    public static List<Texture2D> TeleportFireTextures = new List<Texture2D>();
+                }
+
                 public static class UI
                 {
                     public static Texture2D CursorDefault;
@@ -39,6 +46,7 @@ namespace Assets.Scripts
         }
 
         public static Dictionary<TileBiome, Dictionary<string, Material>> TileBiomeMaterialMap { get; set; }
+        public static bool IsLoaded { get; private set; }
 
         static MaterialManager()
         {
@@ -47,6 +55,8 @@ namespace Assets.Scripts
 
         public static void LoadData()
         {
+            if (IsLoaded) return;
+            IsLoaded = true;
             LoadBiomeMaterials();
             LoadTextures();
             LoadMiscellaneousMaterials();
@@ -54,33 +64,24 @@ namespace Assets.Scripts
 
         private static void LoadTextures()
         {
-            Constants.Gameplay.UI.CursorDefault = Resources.Load("Textures/Interface/Pointers/Aclosed") as Texture2D;
+            Constants.Gameplay.UI.CursorDefault = Resources.Load<Texture2D>("Textures/Interface/Pointers/Aclosed");
+            foreach(var textureName in BuildingTeleportFire.TextureNames)
+            {
+                Constants.Gameplay.Buildings.TeleportFireTextures.Add(Resources.Load<Texture2D>("Textures/Models/Buildings/Animations/Teleport/Barrier/" + textureName));
+            }
         }
 
         private static void LoadMiscellaneousMaterials()
         {
-            if (Constants.Gameplay.Map.TintBuildingFoundationPlacementMaterial != null) UnloadMiscellaneousMaterialData();
-            Constants.Gameplay.Map.TintBuildingFoundationPlacementMaterial = Resources.Load("Materials/BuildingFoundationPlacementHover") as Material;
-            Constants.Gameplay.Map.TintBuildingHoverPlacementMaterial = Resources.Load("Materials/BuildingPlacementHover") as Material;
-            Constants.Gameplay.Map.TintBuildingPlacementDeniedMaterial = Resources.Load("Materials/BuildingPlacementDeniedHover") as Material;
+            Constants.Gameplay.Map.TintBuildingFoundationPlacementMaterial = Resources.Load($"Materials/Buildings/{nameof(Constants.Gameplay.Map.TintBuildingFoundationPlacementMaterial)}") as Material;
+            Constants.Gameplay.Map.TintBuildingHoverPlacementMaterial = Resources.Load($"Materials/Buildings/{nameof(Constants.Gameplay.Map.TintBuildingHoverPlacementMaterial)}") as Material;
+            Constants.Gameplay.Map.TintBuildingPlacementDeniedMaterial = Resources.Load($"Materials/Buildings/{nameof(Constants.Gameplay.Map.TintBuildingPlacementDeniedMaterial)}") as Material;
             Constants.Gameplay.Map.TintSelected = Resources.Load("Materials/TintColorSelected") as Material;
             Constants.Gameplay.Map.TintMine = Resources.Load("Materials/TintColorMineQueue") as Material;
             Constants.Gameplay.Map.TintReinforce = Resources.Load("Materials/TintColorReinforce") as Material;
             Constants.Gameplay.Map.TintDynamite = Resources.Load("Materials/TintColorDynamite") as Material;
-        }
 
-        private static void UnloadMiscellaneousMaterialData()
-        {
-            new[]
-            {
-                Constants.Gameplay.Map.TintBuildingFoundationPlacementMaterial,
-                Constants.Gameplay.Map.TintBuildingHoverPlacementMaterial,
-                Constants.Gameplay.Map.TintBuildingPlacementDeniedMaterial,
-                Constants.Gameplay.Map.TintSelected,
-                Constants.Gameplay.Map.TintMine,
-                Constants.Gameplay.Map.TintReinforce,
-                Constants.Gameplay.Map.TintDynamite
-            }.Where(m => m != null).ForEach(Resources.UnloadAsset);
+            Constants.Gameplay.Buildings.TeleportFire = Resources.Load($"Materials/Buildings/Effects/{nameof(Constants.Gameplay.Buildings.TeleportFire)}") as Material;
         }
 
         private static void LoadBiomeMaterials()
