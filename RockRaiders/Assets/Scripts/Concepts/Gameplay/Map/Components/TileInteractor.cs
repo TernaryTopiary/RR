@@ -17,6 +17,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         public GameObject TilePhysicality { get; internal set; }
         public MapInteractor MapInteractor { get; private set; }
         public TileAppearanceManager TileAppearanceManager { get; internal set; }
+        public bool IsSelected { get; private set; }
 
         public TileInteractor(Tile tileDefinition)
         {
@@ -48,11 +49,14 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         void OnMouseUp()
         {
             OnClickEvent?.Invoke(this, TileDefinition);
+            if (IsSelected) return;
             MapInteractor.SelectTile(this);
         }
 
         public void Select()
         {
+            if (IsSelected) return;
+            IsSelected = true;
             if (TileDefinition.IsGround)
             {
                 TileAppearanceManager.SetTileOverlay(TileOverlay.Selected);
@@ -64,8 +68,9 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             }
         }
 
-        private void Unselect()
+        public void Unselect()
         {
+            IsSelected = false;
             if (TileDefinition.IsGround)
             {
                 TileAppearanceManager.SetTileOverlay(null);

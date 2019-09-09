@@ -1,8 +1,9 @@
-﻿using Assets.Scripts.Miscellaneous;
+﻿using Assets.Scripts.Concepts.Gameplay.Shared;
+using Assets.Scripts.Miscellaneous;
 
 namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
 {
-    public class TileWallSoil : Singleton<TileWallSoil>, ITileTypeWallLightDrillable
+    public class TileWallSoil : Singleton<TileWallSoil>, ITileTypeWallLightDrillable, ISelectable
     {
         public ITileBiome Biome { get; set; }
         public string TooltipText { get; set; } = "Soil";
@@ -17,7 +18,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
         public string CeilingMaterialName { get; } = "70";
     }
 
-    public class TileWallDirt : Singleton<TileWallDirt>, ITileTypeWallLightDrillable
+    public class TileWallDirt : Singleton<TileWallDirt>, ITileTypeWallLightDrillable, ISelectable
     {
         public ITileBiome Biome { get; set; }
         public string TooltipText { get; set; } = "Dirt";
@@ -32,7 +33,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
         public string CeilingMaterialName { get; } = "70";
     }
 
-    public class TileWallLooseRock : Singleton<TileWallLooseRock>, ITileTypeWallLightDrillable
+    public class TileWallLooseRock : Singleton<TileWallLooseRock>, ITileTypeWallLightDrillable, ISelectable
     {
         public ITileBiome Biome { get; set; }
         public string TooltipText { get; set; } = "Loose Rock";
@@ -47,7 +48,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
         public string CeilingMaterialName { get; } = "70";
     }
 
-    public class TileWallHardRock : Singleton<TileWallHardRock>, ITileTypeTypeWallHeavyDrillable
+    public class TileWallHardRock : Singleton<TileWallHardRock>, ITileTypeTypeWallHeavyDrillable, ISelectable
     {
         public ITileBiome Biome { get; set; }
         public string TooltipText { get; set; } = "Hard Rock";
@@ -75,7 +76,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
         public string CeilingMaterialName { get; } = "70";
     }
 
-    public class TileWallOreSeam : Singleton<TileWallOreSeam>, ITileTypeWallLightDrillable
+    public class TileWallOreSeam : Singleton<TileWallOreSeam>, ITileTypeWallLightDrillable, ISelectable
     {
         public ITileBiome Biome { get; set; }
         public string TooltipText { get; set; } = "Ore Seam";
@@ -90,7 +91,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
         public string CeilingMaterialName { get; } = "70";
     }
 
-    public class TileWallEnergyCrystalSeam : Singleton<TileWallEnergyCrystalSeam>, ITileTypeWallLightDrillable
+    public class TileWallEnergyCrystalSeam : Singleton<TileWallEnergyCrystalSeam>, ITileTypeWallLightDrillable, ISelectable
     {
         public ITileBiome Biome { get; set; }
         public string TooltipText { get; set; } = "Energy Crystal Seam";

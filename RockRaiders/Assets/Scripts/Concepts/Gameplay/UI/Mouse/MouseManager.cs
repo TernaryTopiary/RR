@@ -7,7 +7,7 @@ namespace Assets.Scripts.Concepts.Gameplay.UI.Mouse
     {
         internal void ShowMouseState<T>(object duration)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

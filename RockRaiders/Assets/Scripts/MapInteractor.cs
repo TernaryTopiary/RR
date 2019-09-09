@@ -27,7 +27,9 @@ namespace Assets.Scripts
             else
             {
                 UnselectTile();
+                SelectedMapTileInteractor?.Unselect();
                 SelectedMapTileInteractor = tile;
+                tile.Select();
                 //AudioManager.PlaySound(MouseClick);
             }
         }

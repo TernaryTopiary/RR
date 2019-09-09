@@ -60,11 +60,11 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         {
             var tilePhysicality = new GameObject { name = "mapTile_" };
 
-            if (!(tilePhysicality.AddComponent(typeof(SkinnedMeshRenderer)) is SkinnedMeshRenderer meshRenderer))
-                throw new InvalidCastException("Unable to cast renderer to SkinnedMeshRenderer.");
+            var meshCollider = tilePhysicality.AddComponent<MeshCollider>();    // Ok, because tiles are simple.
+            var meshRenderer = tilePhysicality.AddComponent<SkinnedMeshRenderer>();
             meshRenderer.updateWhenOffscreen = true;
             meshRenderer.material = tile.GetMaterial();
-
+            
             var scriptManager = tilePhysicality.AddComponent<TileScriptManager>();
             scriptManager.Physicality = tilePhysicality;
             var tileApperanaceManager = tilePhysicality.AddComponent<TileAppearanceManager>();
@@ -113,7 +113,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             mesh.RecalculateBounds();
 
             // Set up game object with mesh;
-            meshRenderer.sharedMesh = mesh;
+            meshCollider.sharedMesh = meshRenderer.sharedMesh = mesh;
             return tilePhysicality;
         }
     }
