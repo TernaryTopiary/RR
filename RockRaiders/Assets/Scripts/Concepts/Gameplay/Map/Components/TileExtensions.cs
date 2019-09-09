@@ -22,6 +22,10 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             {
                 var vert = tile.GetVertexAt(cornerOrientation);
 
+                var decomposed = cornerOrientation.ToCandidateOrientations().ToArray();
+                var cornerTiles = decomposed.ToDictionary(or => or, or => neighbors[or]);
+                tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, cornerTiles.Values.Select(t => t.OriginalTileHeight).Average(), vert.z));
+
                 if (tile.IsCeiling)
                 {
                     tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, vert.y + Tile.DefaultTileVerticalHeight, vert.z));
@@ -35,10 +39,10 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
                     return t.IsCeiling ? t.OriginalTileHeight + Tile.DefaultTileVerticalHeight : t.OriginalTileHeight;
                 }
 
-                var decomposed = cornerOrientation.ToCandidateOrientations().Where(or => Enum.TryParse<CompassAxisOrientation>(or.ToString(), out _));//.Except(CompassOrientation.None);
-                var cornerTiles = decomposed.ToDictionary(or => or, or => neighbors[or]);
-                if (cornerTiles.Values.Any(t => t.IsCeiling)) tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, vert.y + Tile.DefaultTileVerticalHeight, vert.z));
-                if (cornerTiles.Values.Count(t => t.IsActiveWall) >= 2 && !neighbors[cornerOrientation.ToCompassOrientation()].IsGround) tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, vert.y + Tile.DefaultTileVerticalHeight, vert.z));
+                decomposed = cornerOrientation.ToCandidateOrientations().Where(or => Enum.TryParse<CompassAxisOrientation>(or.ToString(), out _)).ToArray();//.Except(CompassOrientation.None);
+                var axialTiles = decomposed.ToDictionary(or => or, or => neighbors[or]);
+                if (axialTiles.Values.Any(t => t.IsCeiling)) tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, vert.y + Tile.DefaultTileVerticalHeight, vert.z));
+                if (axialTiles.Values.Count(t => t.IsActiveWall) >= 2 && !neighbors[cornerOrientation.ToCompassOrientation()].IsGround) tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, vert.y + Tile.DefaultTileVerticalHeight, vert.z));
 
                 //if (false) // Annotate map.
                 {

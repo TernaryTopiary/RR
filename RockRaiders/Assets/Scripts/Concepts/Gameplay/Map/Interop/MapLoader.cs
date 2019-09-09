@@ -84,6 +84,8 @@ namespace Assets.Scripts
         private void InitializeMapTiles(Map newMap, List<string[]> mapTileData)
         {
             int x = 0, y = (int)newMap.Dimensions.y - 1;
+            var biome = TileBiomeRock.GetInstance();
+
             foreach (var tileData in mapTileData)
             {
                 try
@@ -92,7 +94,7 @@ namespace Assets.Scripts
                     tile.SetTileLocation(new Vector2(x, y));
 
                     // TODO: REMOVE AND READ FROM FILE
-                    tile.TileType.Biome = TileBiomeRock.GetInstance();
+                    tile.TileType.Biome = biome;
 
                     newMap.Tiles2D[x, y] = tile;
                     //newMap.Tiles2D[((int) newMap.Dimensions.x - 1) - x, y] = tile;
@@ -112,6 +114,8 @@ namespace Assets.Scripts
             
             // Keep the hierarchy tidy.
             var map = new GameObject() { name = "Map" };
+            var animator = map.AddComponent<MaterialAnimator>();
+            animator.Biome = biome;
             var mapTiles = new GameObject() { name = "Tiles" };
             mapTiles.transform.parent = map.transform;
 
@@ -130,10 +134,10 @@ namespace Assets.Scripts
                 var tileType = (TileTypeImportMap)encodedTileType;
                 tile.TileType = tileType.ToTileType();
 
-                //float encodedTileHeight;
-                //if (!float.TryParse(tileData[IndexTileHeight], out encodedTileHeight)) throw new MapImportException("Invalid tile height: failed to parse encoded tile height representation. Encoded as {tileData[IndexTileHeight]}");
-                //encodedTileHeight = encodedTileHeight * TileHeightScaleFactor;
-                //tile.OriginalTileHeight = encodedTileHeight;
+                float encodedTileHeight;
+                if (!float.TryParse(tileData[IndexTileHeight], out encodedTileHeight)) throw new MapImportException("Invalid tile height: failed to parse encoded tile height representation. Encoded as {tileData[IndexTileHeight]}");
+                encodedTileHeight = encodedTileHeight * TileHeightScaleFactor;
+                tile.OriginalTileHeight = encodedTileHeight;
 
                 return tile;
             }
