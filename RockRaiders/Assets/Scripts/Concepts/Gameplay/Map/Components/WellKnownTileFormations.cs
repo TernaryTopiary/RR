@@ -18,45 +18,53 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
                 TileConfiguration.ExternalCorner,
                 new List<CompassOrientation[]>
                 {
+                    // _ _ X
+                    // _ _ X
                     // X X X
-                    // X _ _
-                    // X _ _
                     new []
                     {
-                        CompassOrientation.NorthWest,
-                        CompassOrientation.North,
                         CompassOrientation.NorthEast,
-                        CompassOrientation.West,
+                        CompassOrientation.East,
+                        CompassOrientation.SouthEast,
+                        CompassOrientation.South,
                         CompassOrientation.SouthWest
                     },
-                    // X X _
-                    // X _ _
-                    // X _ _
+                    // _ _ X
+                    // _ _ X
+                    // _ X X
                     new []
                     {
-                        CompassOrientation.NorthWest,
-                        CompassOrientation.North,
-                        CompassOrientation.West,
-                        CompassOrientation.SouthWest
+                        CompassOrientation.NorthEast,
+                        CompassOrientation.East,
+                        CompassOrientation.SouthEast,
+                        CompassOrientation.South
                     },
-                    // X X X
-                    // X _ _
                     // _ _ _
+                    // _ _ X
+                    // X X X
                     new []
                     {
-                        CompassOrientation.NorthWest,
-                        CompassOrientation.North,
-                        CompassOrientation.NorthEast,
-                        CompassOrientation.West
+                        CompassOrientation.East,
+                        CompassOrientation.SouthEast,
+                        CompassOrientation.South,
+                        CompassOrientation.SouthWest
                     },
+                    // _ _ _
+                    // _ _ X
+                    // _ X X
+                    new []
+                    {
+                        CompassOrientation.SouthEast, // Not actually required.
+                        CompassOrientation.East,
+                        CompassOrientation.South
+                    },
+                    // _ _ _
+                    // _ _ X
                     // _ X _
-                    // X _ _
-                    // _ _ _
                     new []
                     {
-                        //CompassOrientation.NorthWest, // Not actually required.
-                        CompassOrientation.North,
-                        CompassOrientation.West
+                        CompassOrientation.East,
+                        CompassOrientation.South
                     }
                 }
             },
@@ -64,46 +72,46 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
                 TileConfiguration.Wall,
                 new List<CompassOrientation[]>
                 {
+                    // _ _ _
+                    // _ _ _
                     // X X X
-                    // _ _ _
-                    // _ _ _
                     new []
                     {
-                        CompassOrientation.NorthWest,
-                        CompassOrientation.North,
-                        CompassOrientation.NorthEast
+                        CompassOrientation.SouthWest,
+                        CompassOrientation.South,
+                        CompassOrientation.SouthEast
                     },
-                    // X X _
                     // _ _ _
                     // _ _ _
-                    new []
-                    {
-                        CompassOrientation.NorthWest,
-                        CompassOrientation.North
-                    },
                     // _ X X
-                    // _ _ _
-                    // _ _ _
                     new []
                     {
-                        CompassOrientation.North,
-                        CompassOrientation.East
+                        CompassOrientation.SouthEast,
+                        CompassOrientation.South
                     },
-                    // _ X _
                     // _ _ _
                     // _ _ _
+                    // X X _
                     new []
                     {
-                        CompassOrientation.North
+                        CompassOrientation.South,
+                        CompassOrientation.SouthWest
+                    },
+                    // _ _ _
+                    // _ _ _
+                    // _ X _
+                    new []
+                    {
+                        CompassOrientation.South
                     }
                 }
             },
             {
                 TileConfiguration.InternalCorner,
-                // X _ _
                 // _ _ _
                 // _ _ _
-                CompassOrientation.NorthWest.EnqueueInArray().EnqueueInList()
+                // _ _ X
+                CompassOrientation.SouthEast.EnqueueInArray().EnqueueInList()
             }
         };
     }

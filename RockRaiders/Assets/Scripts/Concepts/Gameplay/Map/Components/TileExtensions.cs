@@ -40,7 +40,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
                 if (cornerTiles.Values.Any(t => t.IsCeiling)) tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, vert.y + Tile.DefaultTileVerticalHeight, vert.z));
                 if (cornerTiles.Values.Count(t => t.IsActiveWall) >= 2 && !neighbors[cornerOrientation.ToCompassOrientation()].IsGround) tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, vert.y + Tile.DefaultTileVerticalHeight, vert.z));
 
-                if (false) // Annotate map.
+                //if (false) // Annotate map.
                 {
                     var compassOr = cornerOrientation.ToCompassOrientation();
                     var nudge = -compassOr.ToOffsetVector3().normalized;
@@ -72,7 +72,26 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             var verts = tile.Verticies.ToArray();
             var indicies = tile.Indicies.ToArray();
             // The verticies of the mesh with no Y components. 
-            var uvs = verts.Select(vert => new Vector2(vert.x, vert.z)).ToArray();
+            Vector2[] uvs;// = verts.Select(vert => new Vector2(vert.x, vert.z)).ToArray();
+
+            if (tile.Orientation.HasValue && tile.Orientation != CompassAxisOrientation.South)
+            {
+                uvs = verts.Select(vert => new Vector2(vert.x, vert.z)).ToArray();
+                var firstUv = uvs.First();
+                uvs = uvs.Skip(1).ToArray();
+
+                var orientation = tile.Orientation.Value;
+                while (orientation != CompassAxisOrientation.South)
+                {
+                    orientation = orientation.Rotate(RotationalOrientation.Clockwise);
+                    uvs = uvs.Spin(RotationalOrientation.Clockwise);
+                }
+                uvs = firstUv.Concat(uvs).ToArray();
+            }
+            else
+            {
+                uvs = verts.Select(vert => new Vector2(vert.x, vert.z)).ToArray();
+            }
 
             var mesh = new Mesh
             {

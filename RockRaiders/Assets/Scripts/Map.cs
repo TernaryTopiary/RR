@@ -51,7 +51,7 @@ namespace Assets.Scripts
                    position.y >= 0;
         }
 
-        public TileConfiguration GetTileConfiguration(Vector2 position, out CornerOrientation? orientation)
+        public TileConfiguration GetTileConfiguration(Vector2 position, out CompassAxisOrientation? orientation)
         {
             if (!IsValidPosition(position)) throw new ArgumentException("Invalid position on map.");
             var neighboringTiles = GetNeighboringTiles(position);
@@ -66,26 +66,43 @@ namespace Assets.Scripts
 
             orientation = null;
             if (neighboringTiles.Center.IsGround) return TileConfiguration.Ground;
-            if (neighboringTiles.Values.All(t => t.IsWall)) return TileConfiguration.Ceiling;
+            if (neighboringTiles.Adjoining.All(t => t.IsWall)) return TileConfiguration.Ceiling;
 
             var formations = WellKnownTileFormations.WallConfigurationLayoutMap.SelectMany(kv =>
-                kv.Value.Select(formation => new { kv.Key, Formation = formation })).OrderByDescending(kv => kv.Formation.Length).ToArray();
+                kv.Value.Select(formation => new { TileConfiguration = kv.Key, Formation = formation.Clone() as CompassOrientation[] })).OrderByDescending(kv => kv.Formation.Length).ToArray();
 
             var bestMatchingFormation = formations.FirstOrDefault(); // take the type.
             bestMatchingFormation = null;
+            var bestMatchingOrientation = CompassAxisOrientation.South;
+            var currentOrientation = CompassAxisOrientation.South;
 
-            var tempNeighbors = neighboringTiles.Clone();
-            orientation = CornerOrientation.NorthWest;
             for (var i = 0; i < 4; i++)
             {
-                var matchingFormation = formations.FirstOrDefault(formation => tempNeighbors.SubsetMeetsCriteria(tile => tile.IsGround, formation.Formation));
-                if (matchingFormation != null && matchingFormation.Formation.Length >= WellKnownTileFormations.UnambiguityLimit) return matchingFormation.Key;
-                if (matchingFormation != null && (bestMatchingFormation == null || matchingFormation.Formation.Length > bestMatchingFormation.Formation.Length)) bestMatchingFormation = matchingFormation;
-                tempNeighbors = tempNeighbors.Rotate(RotationalOrientation.Clockwise);
-                orientation = orientation.Value.Rotate(RotationalOrientation.Clockwise);
+                var matchingFormation = formations.FirstOrDefault(formation => neighboringTiles.SubsetMeetsCriteria(tile => tile.IsGround, formation.Formation));
+                if (matchingFormation != null && matchingFormation.Formation.Length >= WellKnownTileFormations.UnambiguityLimit)
+                {
+                    orientation = bestMatchingOrientation = currentOrientation;
+                    return matchingFormation.TileConfiguration;
+                }
+                if (matchingFormation != null && (bestMatchingFormation == null || matchingFormation.Formation.Length > bestMatchingFormation.Formation.Length))
+                {
+                    bestMatchingFormation = matchingFormation;
+                    bestMatchingOrientation = currentOrientation;
+                }
+
+                foreach(var pair in formations)
+                {
+                    for (int index = 0; index < pair.Formation.Length; index++)
+                    {
+                        pair.Formation[index] = pair.Formation[index].Rotate(RotationalOrientation.Clockwise).Rotate(RotationalOrientation.Clockwise);
+                    }
+                }
+
+                currentOrientation = currentOrientation.Rotate(RotationalOrientation.Clockwise);
             }
 
-            return bestMatchingFormation?.Key ?? throw new ArgumentException();
+            orientation = bestMatchingOrientation;
+            return bestMatchingFormation?.TileConfiguration ?? throw new ArgumentException();
         }
 
         public KeyValuePair<Tile, GameObject> this[Vector2 position]
@@ -131,9 +148,10 @@ namespace Assets.Scripts
             {
                 for (var y = 0; y < _dimensions.y; ++y)
                 {
-                    if (x == 4 && y == 55)
+                    if (x == 7 && y == 51)
                         Console.WriteLine("");
                     Tiles2D[x, y].Configuration = GetTileConfiguration(new Vector2(x, y), out var orientation);
+                    Tiles2D[x, y].Orientation = orientation;
                     //TODO: Cache orientation??
                 }
             }

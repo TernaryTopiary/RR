@@ -57,13 +57,13 @@ namespace Assets.Scripts.Concepts.Cosmic.Space
             switch (orientation)
             {
                 case CornerOrientation.NorthWest:
-                    return 1;
-                case CornerOrientation.NorthEast:
                     return 2;
-                case CornerOrientation.SouthWest:
-                    return 0;
-                case CornerOrientation.SouthEast:
+                case CornerOrientation.NorthEast:
                     return 3;
+                case CornerOrientation.SouthWest:
+                    return 1;
+                case CornerOrientation.SouthEast:
+                    return 4;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(orientation), orientation, null);
             }

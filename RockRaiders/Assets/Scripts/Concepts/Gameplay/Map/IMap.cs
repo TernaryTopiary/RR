@@ -23,7 +23,7 @@ namespace Assets.Scripts
         AdjoiningTilesGrid9 GetNeighboringTiles(Vector2 position);
         Vector2 GetPosition(Tile tile);
         Tile GetTileAtPosition(Vector2 position, bool throwIfOverflow);
-        TileConfiguration GetTileConfiguration(Vector2 position, out CornerOrientation? orientation);
+        TileConfiguration GetTileConfiguration(Vector2 position, out CompassAxisOrientation? orientation);
         bool IsValidPosition(Vector2 position);
     }
 }

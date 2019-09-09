@@ -16,10 +16,10 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
     public class Tile : ITile
     {
         public const byte
-            IndexNorthWest = 0,
-            IndexNorthEast = 1,
-            IndexSouthEast = 2,
-            IndexSouthWest = 3;
+            IndexNorthWest = 1,
+            IndexNorthEast = 2,
+            IndexSouthEast = 3,
+            IndexSouthWest = 4;
         //IndexNorthWest = 0,
         //IndexNorthEast = 1,
         //IndexSouthEast = 2,
@@ -59,6 +59,8 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         public void SetVertexAt(CornerOrientation orientation, Vector3 value)
         {
             _verticies[orientation.ToVertexIndex()] = value;
+            // Adjust the height of the center vertex. It'll always be an average of the highest and lowest vertex height.
+            _verticies[0] = new Vector3(_verticies[0].x, new[] { _verticies.Skip(1).Min(v => v.y), _verticies.Skip(1).Max(v => v.y) }.Average(), _verticies[0].z);
             VerticiesChanged?.Invoke(this);
         }
 
@@ -124,12 +126,13 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 
         public TileConfiguration Configuration { get; set; } = TileConfiguration.Ceiling;
         public float OriginalTileHeight { get; set; }
+        public CompassAxisOrientation? Orientation { get; internal set; }
 
         public new string ToString()
         {
             var typeName = TileType.GetType().Name;
             var prefix = IsCeiling ? $"Ceiling ({typeName})" : IsGround ? $"Ground ({typeName})" : typeName;
-            return prefix + " " + $"{string.Join(", ", Verticies)}";
+            return prefix /*" " + $"{string.Join(", ", Verticies)}*/;
         }
     }
 }
