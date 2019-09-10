@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.Concepts.Gameplay.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -15,6 +16,7 @@ namespace Assets.Scripts.Concepts.Gameplay.UI.Menus.Buttons
         public Image ButtonImage { get; set; }
         public static float ScaleFactor = 0.9f;
         private Vector3? _cachedScale;
+        public AudioManager AudioManager = AudioManager.GetInstance();
 
         void Start()
         {
@@ -38,6 +40,8 @@ namespace Assets.Scripts.Concepts.Gameplay.UI.Menus.Buttons
                 ButtonImageTransform.localScale = _cachedScale.Value;
                 _cachedScale = null;
             }
+            // TODO:
+            //AudioManager.PlaySound()
         }
 
         public void OnPointerExit(PointerEventData eventData)
