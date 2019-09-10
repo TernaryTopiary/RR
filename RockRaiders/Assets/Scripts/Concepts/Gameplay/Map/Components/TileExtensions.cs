@@ -16,6 +16,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         public static void SetVertexHeightsFromNeighbors(this Tile tile, AdjoiningTilesGrid9 neighbors)
         {
             var color = UnityEngine.Random.ColorHSV();
+            var lowerRightNeighbors = neighbors[CornerOrientation.SouthEast];
 
             foreach (var cornerOrientation in Enum.GetValues(typeof(CornerOrientation)).OfType<CornerOrientation>())
             {
@@ -23,7 +24,8 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 
                 var decomposed = cornerOrientation.ToCandidateOrientations().ToArray();
                 var cornerTiles = decomposed.ToDictionary(or => or, or => neighbors[or]);
-                tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, cornerTiles.Values.Select(t => t.OriginalTileHeight).Average(), vert.z));
+
+                tile.SetVertexAt(cornerOrientation, new Vector3(vert.x, lowerRightNeighbors[cornerOrientation].OriginalTileHeight, vert.z));
 
                 if (tile.IsCeiling)
                 {

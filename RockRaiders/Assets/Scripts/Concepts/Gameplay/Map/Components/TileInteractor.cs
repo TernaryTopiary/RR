@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 {
@@ -48,6 +49,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 
         void OnMouseUp()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             OnClickEvent?.Invoke(this, TileDefinition);
             if (IsSelected) return;
             MapInteractor.SelectTile(this);

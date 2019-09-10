@@ -113,7 +113,7 @@ namespace Assets.Scripts
             newMap.CalculateTileHeights();
             
             // Keep the hierarchy tidy.
-            var map = new GameObject() { name = "Map" };
+            var map = GameObject.Find("Map");
             var animator = map.AddComponent<MaterialAnimator>();
             animator.Biome = biome;
             var mapTiles = new GameObject() { name = "Tiles" };

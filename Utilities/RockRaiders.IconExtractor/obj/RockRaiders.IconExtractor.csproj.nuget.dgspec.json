@@ -1,0 +1,70 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\Utilities\\RockRaiders.IconExtractor\\RockRaiders.IconExtractor.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\Utilities\\RockRaiders.IconExtractor\\RockRaiders.IconExtractor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\Utilities\\RockRaiders.IconExtractor\\RockRaiders.IconExtractor.csproj",
+        "projectName": "RockRaiders.IconExtractor",
+        "projectPath": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\Utilities\\RockRaiders.IconExtractor\\RockRaiders.IconExtractor.csproj",
+        "packagesPath": "C:\\Users\\Rune\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rune\\Source\\Repos\\RockRaiders.Unity\\Utilities\\RockRaiders.IconExtractor\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Rune\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Rune\\AppData\\Local\\Xenko\\NugetDev": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packages.xenko.com/nuget": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[1.0.0-beta0007, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.5.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

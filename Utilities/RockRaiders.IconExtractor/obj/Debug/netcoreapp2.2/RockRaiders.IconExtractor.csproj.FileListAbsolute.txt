@@ -1,0 +1,11 @@
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\Utilities\RockRaiders.IconExtractor\bin\Debug\netcoreapp2.2\RockRaiders.IconExtractor.deps.json
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\Utilities\RockRaiders.IconExtractor\bin\Debug\netcoreapp2.2\RockRaiders.IconExtractor.runtimeconfig.json
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\Utilities\RockRaiders.IconExtractor\bin\Debug\netcoreapp2.2\RockRaiders.IconExtractor.runtimeconfig.dev.json
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\Utilities\RockRaiders.IconExtractor\bin\Debug\netcoreapp2.2\RockRaiders.IconExtractor.dll
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\Utilities\RockRaiders.IconExtractor\obj\Debug\netcoreapp2.2\RockRaiders.IconExtractor.csprojAssemblyReference.cache
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\Utilities\RockRaiders.IconExtractor\obj\Debug\netcoreapp2.2\RockRaiders.IconExtractor.csproj.CoreCompileInputs.cache
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\Utilities\RockRaiders.IconExtractor\obj\Debug\netcoreapp2.2\RockRaiders.IconExtractor.AssemblyInfoInputs.cache
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\Utilities\RockRaiders.IconExtractor\obj\Debug\netcoreapp2.2\RockRaiders.IconExtractor.AssemblyInfo.cs
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\Utilities\RockRaiders.IconExtractor\bin\Debug\netcoreapp2.2\RockRaiders.IconExtractor.pdb
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\Utilities\RockRaiders.IconExtractor\obj\Debug\netcoreapp2.2\RockRaiders.IconExtractor.dll
+C:\Users\Rune\Source\Repos\RockRaiders.Unity\Utilities\RockRaiders.IconExtractor\obj\Debug\netcoreapp2.2\RockRaiders.IconExtractor.pdb
