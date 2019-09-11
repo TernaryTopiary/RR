@@ -13,7 +13,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         public Material[] ActiveMaterials => MeshRenderer.materials;
         public List<string> OverlayMaterialNames = new List<string>();  // Use the names as we can't take the reference and guarantee it's held.
         
-        public void SetTileOverlay(TileOverlay? overlay)
+        public void SetTileOverlay(TileOverlayType? overlay)
         {
             if(!overlay.HasValue)
             {   
@@ -21,7 +21,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
                 MeshRenderer.materials = ActiveMaterials.Where(mat => OverlayMaterialNames.All(name => !mat.name.StartsWith(name))).ToArray();
                 return;
             }
-            if(overlay.Value.HasFlag(TileOverlay.Selected))
+            if(overlay.Value.HasFlag(TileOverlayType.Selected))
             {
                 if (!ActiveMaterials.Contains(MaterialManager.Constants.Gameplay.Map.TintSelected))
                 {

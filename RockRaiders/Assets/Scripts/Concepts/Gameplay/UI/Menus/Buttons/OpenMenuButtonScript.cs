@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Concepts.Gameplay.Building.BuildingType;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Concepts.Gameplay.UI.Menus.Buttons
@@ -15,7 +16,7 @@ namespace Assets.Scripts.Concepts.Gameplay.UI.Menus.Buttons
             _targetSlidingMenuPanelScript = MenuToOpen?.GetComponent<SlidingMenuPanelScript>();
         }
 
-        public void OnPointerClick(PointerEventData pointerEventData)
+        public virtual void OnPointerClick(PointerEventData pointerEventData)
         {
             if (_localSlidingMenuPanelScript != null) _localSlidingMenuPanelScript.Hide();
             if (_targetSlidingMenuPanelScript != null) _targetSlidingMenuPanelScript.Show();

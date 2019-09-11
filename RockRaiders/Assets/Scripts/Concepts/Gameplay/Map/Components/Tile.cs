@@ -15,6 +15,8 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
     [DebuggerDisplay("{ToString()}")]
     public class Tile : ITile
     {
+        public const string TileGameObjectNamePrefix = "mapTile";
+
         public const byte
             IndexNorthWest = 1,
             IndexNorthEast = 2,

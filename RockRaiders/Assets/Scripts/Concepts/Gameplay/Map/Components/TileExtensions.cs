@@ -58,9 +58,9 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             }
         }
 
-        public static GameObject ToGameObject(this Tile tile)
+        public static GameObject ToGameObject(this Tile tile, MapInteractor mapInteractor)
         {
-            var tilePhysicality = new GameObject { name = "mapTile_" };
+            var tilePhysicality = new GameObject { name = $"{Tile.TileGameObjectNamePrefix}_" };
 
             var meshCollider = tilePhysicality.AddComponent<MeshCollider>();    // Ok, because tiles are simple.
             var meshRenderer = tilePhysicality.AddComponent<SkinnedMeshRenderer>();
@@ -75,6 +75,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             interactor.TileDefinition = tile;
             interactor.TilePhysicality = tilePhysicality;
             interactor.TileAppearanceManager = tileApperanaceManager;
+            interactor.MapInteractor = mapInteractor;
             scriptManager.RegisterBehavior(interactor);
             scriptManager.RegisterBehavior(tileApperanaceManager);
 

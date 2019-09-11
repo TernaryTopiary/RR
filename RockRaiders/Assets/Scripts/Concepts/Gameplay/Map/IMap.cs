@@ -17,7 +17,7 @@ namespace Assets.Scripts
 
         void CalculateTileConfigurations();
         void CalculateTileHeights();
-        Dictionary<GameObject, List<GameObject>> GenerateTileGameObjects();
+        Dictionary<GameObject, List<GameObject>> GenerateTileGameObjects(ITileBiome biome);
         GameObject GetGameObjectAtPosition(Vector2 position, bool throwIfOverflow);
         Tile GetNeighboringTile(Tile tile, CompassOrientation offset, bool throwIfOverflow);
         AdjoiningTilesGrid9 GetNeighboringTiles(Vector2 position);

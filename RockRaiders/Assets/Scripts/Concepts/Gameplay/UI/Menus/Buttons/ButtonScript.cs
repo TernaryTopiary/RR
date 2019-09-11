@@ -17,6 +17,7 @@ namespace Assets.Scripts.Concepts.Gameplay.UI.Menus.Buttons
         public static float ScaleFactor = 0.9f;
         private Vector3? _cachedScale;
         public AudioManager AudioManager = AudioManager.GetInstance();
+        public event Action<PointerEventData> OnMouseUp;
 
         void Start()
         {
@@ -40,6 +41,8 @@ namespace Assets.Scripts.Concepts.Gameplay.UI.Menus.Buttons
                 ButtonImageTransform.localScale = _cachedScale.Value;
                 _cachedScale = null;
             }
+
+            OnMouseUp?.Invoke(eventData);
             // TODO:
             //AudioManager.PlaySound()
         }

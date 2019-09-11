@@ -17,5 +17,10 @@
             lock (lockingObject) if (_instance == null) _instance = new T();
             return _instance;
         }
+
+        public void OverrideInstance(T instance)
+        {
+            _instance = instance;
+        }
     }
 }

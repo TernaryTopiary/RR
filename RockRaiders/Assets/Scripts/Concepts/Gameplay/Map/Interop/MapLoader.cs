@@ -55,7 +55,7 @@ namespace Assets.Scripts
 
         private Map ParseRawMapData(string[] rawMapData)
         {
-            var newMap = new Map();
+            var newMap = Map.GetInstance();
             InitializeObjective(newMap, rawMapData);
             ParseBasicMapData(newMap, rawMapData);
             InitializeCamera(newMap, rawMapData);
@@ -112,15 +112,8 @@ namespace Assets.Scripts
             newMap.CalculateTileConfigurations();
             newMap.CalculateTileHeights();
             
-            // Keep the hierarchy tidy.
-            var map = GameObject.Find("Map");
-            var animator = map.AddComponent<MaterialAnimator>();
-            animator.Biome = biome;
-            var mapTiles = new GameObject() { name = "Tiles" };
-            mapTiles.transform.parent = map.transform;
+            var tileDictionary = newMap.GenerateTileGameObjects(biome);
 
-            var tileDictionary = newMap.GenerateTileGameObjects();
-            tileDictionary.Keys.ForEach(row => row.transform.parent = mapTiles.transform);
             Debug.Log($"Loaded {tileDictionary.Values.Sum(list => list.Count)} tiles.");
         }
 

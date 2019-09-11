@@ -1,11 +1,9 @@
 ﻿using Assets.Scripts.Concepts.Cosmic.Space;
+using Assets.Scripts.Concepts.Constants;
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Assets.Scripts.Concepts.Constants;
 
 namespace Assets.Scripts.Concepts.Gameplay.Building.Effects
 {

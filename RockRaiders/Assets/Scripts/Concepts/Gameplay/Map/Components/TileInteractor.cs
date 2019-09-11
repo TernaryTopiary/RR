@@ -12,11 +12,9 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 
     public class TileInteractor : MonoBehaviour
     {
-        public event Action<TileInteractor, Tile> OnClickEvent, OnMouseEnterEvent, OnMouseExitEvent;
-
         public Tile TileDefinition { get; internal set; }
         public GameObject TilePhysicality { get; internal set; }
-        public MapInteractor MapInteractor { get; private set; }
+        public MapInteractor MapInteractor { get; set; }
         public TileAppearanceManager TileAppearanceManager { get; internal set; }
         public bool IsSelected { get; private set; }
 
@@ -25,34 +23,12 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             TileDefinition = tileDefinition;
         }
 
-        //public MapScript MapReference;
-
-        // Use this for initialization
-        void Start()
-        {
-            MapInteractor = MapInteractor.GetInstance();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        void OnMouseEnter()
-        {
-        }
-
-        void OnMouseExit()
-        {
-        }
-
         void OnMouseUp()
         {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
-            OnClickEvent?.Invoke(this, TileDefinition);
+            var isOverObject = EventSystem.current?.IsPointerOverGameObject();
+            if (isOverObject == true) return;
             if (IsSelected) return;
-            MapInteractor.SelectTile(this);
+            MapInteractor.MouseUp();
         }
 
         public void Select()
@@ -61,12 +37,12 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             IsSelected = true;
             if (TileDefinition.IsGround)
             {
-                TileAppearanceManager.SetTileOverlay(TileOverlay.Selected);
+                TileAppearanceManager.SetTileOverlay(TileOverlayType.Selected);
             }
             if (TileDefinition.IsActiveWall)
             {
                 // Add reinforce/dynamite/mine/etc.
-                //TileAppearanceManager.SetOverlayMaterial(TileOverlay.Selected);
+                //TileAppearanceManager.SetOverlayMaterial(TileOverlayType.Selected);
             }
         }
 
@@ -80,7 +56,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             if (TileDefinition.IsActiveWall)
             {
                 // Add reinforce/dynamite/mine/etc.
-                //TileAppearanceManager.SetOverlayMaterial(TileOverlay.Selected);
+                //TileAppearanceManager.SetOverlayMaterial(TileOverlayType.Selected);
             }
         }
     }

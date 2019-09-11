@@ -34,7 +34,7 @@ namespace Assets.Scripts
                     public static Material TintReinforce;
                     public static Material TintDynamite;
                     public static Material TintBuildingFoundationPlacementMaterial;
-                    public static Material TintBuildingHoverPlacementMaterial;
+                    public static Material TintBuildingPlacementMaterial;
                     public static Material TintBuildingPlacementDeniedMaterial;
                 }
 
@@ -74,7 +74,7 @@ namespace Assets.Scripts
         private static void LoadMiscellaneousMaterials()
         {
             Constants.Gameplay.Map.TintBuildingFoundationPlacementMaterial = Resources.Load($"Materials/Buildings/{nameof(Constants.Gameplay.Map.TintBuildingFoundationPlacementMaterial)}") as Material;
-            Constants.Gameplay.Map.TintBuildingHoverPlacementMaterial = Resources.Load($"Materials/Buildings/{nameof(Constants.Gameplay.Map.TintBuildingHoverPlacementMaterial)}") as Material;
+            Constants.Gameplay.Map.TintBuildingPlacementMaterial = Resources.Load($"Materials/Buildings/{nameof(Constants.Gameplay.Map.TintBuildingPlacementMaterial)}") as Material;
             Constants.Gameplay.Map.TintBuildingPlacementDeniedMaterial = Resources.Load($"Materials/Buildings/{nameof(Constants.Gameplay.Map.TintBuildingPlacementDeniedMaterial)}") as Material;
             Constants.Gameplay.Map.TintSelected = Resources.Load("Materials/TintColorSelected") as Material;
             Constants.Gameplay.Map.TintMine = Resources.Load("Materials/TintColorMineQueue") as Material;

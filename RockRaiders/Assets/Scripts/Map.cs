@@ -7,17 +7,20 @@ using Assets.Scripts.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Concepts.Constants;
+using Assets.Scripts.Concepts.Gameplay.Building.BuildingType;
+using Assets.Scripts.Miscellaneous;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
-
-    public class Map : IMap
+    public class Map : Singleton<Map>, IMap
     {
         private Vector2 _dimensions;
+        public MapInteractor MapInteractor { get; set; }
         public Camera Camera { get; set; }
         public static float DefaultCameraHeight { get; set; } = 3.0f;
         public Tile[,] Tiles2D { get; private set; }
+        public Dictionary<TileOverlayType, GameObject>[,] TileOverlays { get; private set; }
         public GameObject[,] TileGameObjects2D { get; private set; }
 
         public Vector2 Dimensions
@@ -27,6 +30,7 @@ namespace Assets.Scripts
             {
                 _dimensions = value;
                 Tiles2D = new Tile[(int)value.x, (int)value.y];
+                TileOverlays = new Dictionary<TileOverlayType, GameObject>[(int)value.x, (int)value.y];
                 TileGameObjects2D = new GameObject[(int)value.x, (int)value.y];
             }
         }
@@ -38,6 +42,19 @@ namespace Assets.Scripts
                 for (var y = 0; y < _dimensions.y; ++y)
                 {
                     if (Tiles2D[x, y]?.Equals(tile) == true) return new Vector2(x, y);
+                }
+            }
+
+            throw new KeyNotFoundException("Could not find tile in tile map.");
+        }
+
+        public Vector2 GetPosition(GameObject gameObject)
+        {
+            for (var x = 0; x < _dimensions.x; ++x)
+            {
+                for (var y = 0; y < _dimensions.y; ++y)
+                {
+                    if (TileGameObjects2D[x, y]?.Equals(gameObject) == true) return new Vector2(x, y);
                 }
             }
 
@@ -155,25 +172,35 @@ namespace Assets.Scripts
             }
         }
 
-        public Dictionary<GameObject, List<GameObject>> GenerateTileGameObjects()
+        public Dictionary<GameObject, List<GameObject>> GenerateTileGameObjects(ITileBiome biome)
         {
+            // Keep the hierarchy tidy.
+            var map = GameObject.Find("Map");
+            MapInteractor = map.GetComponent<MapInteractor>();
+            var animator = map.AddComponent<MaterialAnimator>();
+            animator.Biome = biome;
+            var mapTiles = new GameObject() { name = "Tiles" };
+            mapTiles.transform.parent = map.transform;
+
             var tileDictionary = new Dictionary<GameObject, List<GameObject>>();
 
             for (var x = 0; x < _dimensions.x; ++x)
             {
                 var row = new GameObject() { name = $"Row_({x})" };
+                row.transform.parent = mapTiles.transform;
                 var rowTiles = new List<GameObject>();
                 tileDictionary[row] = rowTiles;
 
                 for (var y = 0; y < _dimensions.y; ++y)
                 {
-                    var gameObj = Tiles2D[x, y].ToGameObject();
+                    var gameObj = Tiles2D[x, y].ToGameObject(MapInteractor);
                     gameObj.name += $"({x},{y})";
                     gameObj.transform.parent = row.transform;
                     TileGameObjects2D[x, y] = gameObj;
                     rowTiles.Add(TileGameObjects2D[x, y]);
                 }
             }
+
             return tileDictionary;
         }
 
