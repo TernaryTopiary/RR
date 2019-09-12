@@ -20,7 +20,6 @@ namespace Assets.Scripts
         public Camera Camera { get; set; }
         public static float DefaultCameraHeight { get; set; } = 3.0f;
         public Tile[,] Tiles2D { get; private set; }
-        public Dictionary<TileOverlayType, GameObject>[,] TileOverlays { get; private set; }
         public GameObject[,] TileGameObjects2D { get; private set; }
 
         public Vector2 Dimensions
@@ -30,7 +29,6 @@ namespace Assets.Scripts
             {
                 _dimensions = value;
                 Tiles2D = new Tile[(int)value.x, (int)value.y];
-                TileOverlays = new Dictionary<TileOverlayType, GameObject>[(int)value.x, (int)value.y];
                 TileGameObjects2D = new GameObject[(int)value.x, (int)value.y];
             }
         }

@@ -105,17 +105,17 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType
     {
         public static Dictionary<TileTypeImportMap, ITileType> TileTypeMap = new Dictionary<TileTypeImportMap, ITileType>
         {
-            { TileTypeImportMap.Soil, new TileTypeGroundSoil()},
-            { TileTypeImportMap.Dirt, new TileWallDirt()},
-            { TileTypeImportMap.Loose, new TileWallLooseRock()},
-            { TileTypeImportMap.Hard, new TileWallHardRock()},
-            { TileTypeImportMap.Solid, new TileWallSolidRock()},
-            { TileTypeImportMap.EnergySeam, new TileWallEnergyCrystalSeam()},
-            { TileTypeImportMap.RegeneratorSeam, new TileWallEnergyCrystalRegeneratorSeam()},
-            { TileTypeImportMap.Lava, new TileGroundLava()},
-            { TileTypeImportMap.Water, new TileGroundWater()},
-            { TileTypeImportMap.SlugHole, new TileGroundSlimySlugHole()},
-            { TileTypeImportMap.OreSeam, new TileWallOreSeam()}
+            { TileTypeImportMap.Soil, TileTypeGroundSoil.GetInstance()},
+            { TileTypeImportMap.Dirt, TileWallDirt.GetInstance()},
+            { TileTypeImportMap.Loose, TileWallLooseRock.GetInstance()},
+            { TileTypeImportMap.Hard, TileWallHardRock.GetInstance()},
+            { TileTypeImportMap.Solid, TileWallSolidRock.GetInstance()},
+            { TileTypeImportMap.EnergySeam, TileWallEnergyCrystalSeam.GetInstance()},
+            { TileTypeImportMap.RegeneratorSeam, TileWallEnergyCrystalRegeneratorSeam.GetInstance()},
+            { TileTypeImportMap.Lava, TileGroundLava.GetInstance()},
+            { TileTypeImportMap.Water, TileGroundWater.GetInstance()},
+            { TileTypeImportMap.SlugHole, TileGroundSlimySlugHole.GetInstance()},
+            { TileTypeImportMap.OreSeam, TileWallOreSeam.GetInstance()}
         };
 
         public static ITileType ToTileType(this TileTypeImportMap value) => TileTypeMap.ContainsKey(value) ? TileTypeMap[value] : new TileTypeGroundSoil();

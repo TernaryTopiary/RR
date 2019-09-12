@@ -6,6 +6,8 @@ using Assets.Scripts.Concepts.Cosmic.Time;
 using Assets.Scripts.Concepts.Gameplay.Building.Components;
 using Assets.Scripts.Concepts.Gameplay.Resource;
 using System.Linq;
+using Assets.Scripts.Concepts.Gameplay.Map.TileType;
+using Assets.Scripts.Concepts.Gameplay.Map.TileType.Ground;
 using Assets.Scripts.Miscellaneous;
 
 namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
@@ -39,8 +41,8 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } = new AdjoiningGrid9<IBuildingTileLayout>
         {
-            {CompassOrientation.None, new BuildingTileLayout<BuildingTileTypeFoundation>(BuildingNodes.ToolstoreBuildingX0Y0) },
-            {CompassOrientation.South, new BuildingTileLayout<BuildingTileTypeFoundation>() },
+            {CompassOrientation.None, new BuildingTileLayout<BuildingTileTypeFoundation>(BuildingNodes.ToolstoreBuildingX0Y0) { ValidTargetTileTypes = new List<ITileType> { TileTypeGroundSoil.GetInstance() } }},
+            {CompassOrientation.South, new BuildingTileLayout<BuildingTileTypeFoundation>() { ValidTargetTileTypes = new List<ITileType> { TileTypeGroundSoil.GetInstance() } } },
         };
     }
 
@@ -53,8 +55,11 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
 
-        public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } =
-            new AdjoiningGrid9<IBuildingTileLayout>();
+        public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } = new AdjoiningGrid9<IBuildingTileLayout>
+        {
+            {CompassOrientation.None, new BuildingTileLayout<BuildingTileTypeFoundation>(BuildingNodes.TeleportPadBuildingX0Y0) { ValidTargetTileTypes = new List<ITileType> { TileTypeGroundSoil.GetInstance() } }},
+            {CompassOrientation.South, new BuildingTileLayout<BuildingTileTypeFoundation>() { ValidTargetTileTypes = new List<ITileType> { TileTypeGroundSoil.GetInstance() } } },
+        };
     }
 
     public class BuildingTypeDocks : Singleton<BuildingTypeDocks>, IBuildingType
@@ -72,8 +77,12 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
 
-        public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } =
-            new AdjoiningGrid9<IBuildingTileLayout>();
+        public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } = new AdjoiningGrid9<IBuildingTileLayout>
+        {
+            {CompassOrientation.North, new BuildingTileLayout<BuildingTileTypeFoundation>() { ValidTargetTileTypes = new List<ITileType> { TileTypeGroundSoil.GetInstance() } }},
+            {CompassOrientation.None, new BuildingTileLayout<BuildingTileTypeFoundation>(BuildingNodes.DocksBuildingX0Y0) { ValidTargetTileTypes = new List<ITileType> { TileTypeGroundSoil.GetInstance() } }},
+            {CompassOrientation.South, new BuildingTileLayout<BuildingTileTypeEmpty>() { ValidTargetTileTypes = new List<ITileType> { TileGroundWater.GetInstance() } } },
+        };
     }
 
     public class BuildingTypePowerStation : Singleton<BuildingTypePowerStation>, IBuildingType
@@ -92,7 +101,12 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public int DefaultHitpoints { get; set; }
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } =
-            new AdjoiningGrid9<IBuildingTileLayout>();
+            new AdjoiningGrid9<IBuildingTileLayout>
+            {
+                {CompassOrientation.West, new BuildingTileLayout<BuildingTileTypeFoundation>(BuildingNodes.PowerStationBuildingX0Y0) { ValidTargetTileTypes = new List<ITileType> { TileTypeGroundSoil.GetInstance() } }},
+                {CompassOrientation.None, new BuildingTileLayout<BuildingTileTypeFoundation>(BuildingNodes.PowerStationBuildingX1Y0) { ValidTargetTileTypes = new List<ITileType> { TileTypeGroundSoil.GetInstance() } }},
+                {CompassOrientation.South, new BuildingTileLayout<BuildingTileTypeFoundation>() { ValidTargetTileTypes = new List<ITileType> { TileTypeGroundSoil.GetInstance() } } },
+            };
     }
 
     public class BuildingTypeSupportStation : Singleton<BuildingTypeSupportStation>, IBuildingType

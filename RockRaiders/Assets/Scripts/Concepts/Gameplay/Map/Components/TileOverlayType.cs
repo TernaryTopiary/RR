@@ -9,6 +9,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         Dynamite = 1 << 1,
         PlaceBuilding = 1 << 2,
         PlaceBuildingFoundation = 1 << 3,
-        Selected = 1 << 4
+        InvalidBuildingPlacement = 1 << 4,
+        Selected = 1 << 5
     }
 }
