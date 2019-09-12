@@ -35,9 +35,10 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public BuildingType BuildingType { get; } = BuildingType.ToolStore;
         public string TooltipText { get; set; } = "Tool Store";
         public bool IsTooltipVocalized { get; set; } = true;
-        public Dictionary<Type, int> Cost { get; set; } = new Dictionary<Type, int>();
+        public Dictionary<ResourceType, int> Cost { get; set; } = new Dictionary<ResourceType, int>();
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
+        public bool PreventSelection { get; set; }
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } = new AdjoiningGrid9<IBuildingTileLayout>
         {
@@ -51,9 +52,10 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public BuildingType BuildingType { get; } = BuildingType.TeleportPad;
         public string TooltipText { get; set; } = "Teleport Pad";
         public bool IsTooltipVocalized { get; set; } = true;
-        public Dictionary<Type, int> Cost { get; set; } = new Dictionary<Type, int>() { { typeof(ResourceTypeOre), 8 } };
+        public Dictionary<ResourceType, int> Cost { get; set; } = new Dictionary<ResourceType, int>() { { ResourceType.Ore, 8 } };
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
+        public bool PreventSelection { get; set; }
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } = new AdjoiningGrid9<IBuildingTileLayout>
         {
@@ -68,14 +70,15 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public string TooltipText { get; set; } = "Docks";
         public bool IsTooltipVocalized { get; set; } = true;
 
-        public Dictionary<Type, int> Cost { get; set; } = new Dictionary<Type, int>()
+        public Dictionary<ResourceType, int> Cost { get; set; } = new Dictionary<ResourceType, int>()
         {
-            { typeof(ResourceTypeOre), 8 },
-            { typeof(ResourceTypeCrystal), 1 }
+            { ResourceType.Ore, 8 },
+            { ResourceType.Crystal, 1 }
         };
 
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
+        public bool PreventSelection { get; set; }
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } = new AdjoiningGrid9<IBuildingTileLayout>
         {
@@ -91,14 +94,15 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public string TooltipText { get; set; } = "Power Station";
         public bool IsTooltipVocalized { get; set; } = true;
 
-        public Dictionary<Type, int> Cost { get; set; } = new Dictionary<Type, int>()
+        public Dictionary<ResourceType, int> Cost { get; set; } = new Dictionary<ResourceType, int>()
         {
-            { typeof(ResourceTypeOre), 12 },
-            { typeof(ResourceTypeCrystal), 2 }
+            { ResourceType.Ore, 12 },
+            { ResourceType.Crystal, 2 }
         };
 
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
+        public bool PreventSelection { get; set; }
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } =
             new AdjoiningGrid9<IBuildingTileLayout>
@@ -115,14 +119,15 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public string TooltipText { get; set; } = "Support Station";
         public bool IsTooltipVocalized { get; set; } = true;
 
-        public Dictionary<Type, int> Cost { get; set; } = new Dictionary<Type, int>()
+        public Dictionary<ResourceType, int> Cost { get; set; } = new Dictionary<ResourceType, int>()
         {
-            { typeof(ResourceTypeOre), 15 },
-            { typeof(ResourceTypeCrystal), 3 }
+            { ResourceType.Ore, 15 },
+            { ResourceType.Crystal, 3 }
         };
 
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
+        public bool PreventSelection { get; set; }
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } =
             new AdjoiningGrid9<IBuildingTileLayout>();
@@ -134,14 +139,15 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public string TooltipText { get; set; } = "Upgrade Station";
         public bool IsTooltipVocalized { get; set; } = true;
 
-        public Dictionary<Type, int> Cost { get; set; } = new Dictionary<Type, int>()
+        public Dictionary<ResourceType, int> Cost { get; set; } = new Dictionary<ResourceType, int>()
         {
-            { typeof(ResourceTypeOre), 20 },
-            { typeof(ResourceTypeCrystal), 3 }
+            { ResourceType.Ore, 20 },
+            { ResourceType.Crystal, 3 }
         };
 
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
+        public bool PreventSelection { get; set; }
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } =
             new AdjoiningGrid9<IBuildingTileLayout>();
@@ -153,14 +159,15 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public string TooltipText { get; set; } = "Geological Center";
         public bool IsTooltipVocalized { get; set; } = true;
 
-        public Dictionary<Type, int> Cost { get; set; } = new Dictionary<Type, int>()
+        public Dictionary<ResourceType, int> Cost { get; set; } = new Dictionary<ResourceType, int>()
         {
-            { typeof(ResourceTypeOre), 15 },
-            { typeof(ResourceTypeCrystal), 3 }
+            { ResourceType.Ore, 15 },
+            { ResourceType.Crystal, 3 }
         };
 
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
+        public bool PreventSelection { get; set; }
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } =
             new AdjoiningGrid9<IBuildingTileLayout>();
@@ -172,14 +179,15 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public string TooltipText { get; set; } = "Ore Refinery";
         public bool IsTooltipVocalized { get; set; } = true;
 
-        public Dictionary<Type, int> Cost { get; set; } = new Dictionary<Type, int>()
+        public Dictionary<ResourceType, int> Cost { get; set; } = new Dictionary<ResourceType, int>()
         {
-            { typeof(ResourceTypeOre), 20 },
-            { typeof(ResourceTypeCrystal), 3 }
+            { ResourceType.Ore, 20 },
+            { ResourceType.Crystal, 3 }
         };
 
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
+        public bool PreventSelection { get; set; }
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } =
             new AdjoiningGrid9<IBuildingTileLayout>();
@@ -191,14 +199,15 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public string TooltipText { get; set; } = "Mining Laser";
         public bool IsTooltipVocalized { get; set; } = true;
 
-        public Dictionary<Type, int> Cost { get; set; } = new Dictionary<Type, int>()
+        public Dictionary<ResourceType, int> Cost { get; set; } = new Dictionary<ResourceType, int>()
         {
-            { typeof(ResourceTypeOre), 15 },
-            { typeof(ResourceTypeCrystal), 1 }
+            { ResourceType.Ore, 15 },
+            { ResourceType.Crystal, 1 }
         };
 
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
+        public bool PreventSelection { get; set; }
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } =
             new AdjoiningGrid9<IBuildingTileLayout>();
@@ -210,14 +219,15 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.BuildingType
         public string TooltipText { get; set; } = "Super Teleport";
         public bool IsTooltipVocalized { get; set; } = true;
 
-        public Dictionary<Type, int> Cost { get; set; } = new Dictionary<Type, int>()
+        public Dictionary<ResourceType, int> Cost { get; set; } = new Dictionary<ResourceType, int>()
         {
-            { typeof(ResourceTypeOre), 20 },
-            { typeof(ResourceTypeCrystal), 2 }
+            { ResourceType.Ore, 20 },
+            { ResourceType.Crystal, 2 }
         };
 
         public Seconds TimeToCreate { get; set; }
         public int DefaultHitpoints { get; set; }
+        public bool PreventSelection { get; set; }
 
         public AdjoiningGrid9<IBuildingTileLayout> DefaultTileLayout { get; set; } =
             new AdjoiningGrid9<IBuildingTileLayout>();

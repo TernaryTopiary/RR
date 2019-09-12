@@ -27,7 +27,6 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         {
             var isOverObject = EventSystem.current?.IsPointerOverGameObject();
             if (isOverObject == true) return;
-            if (IsSelected) return;
             MapInteractor.MouseUp();
         }
 
@@ -35,14 +34,17 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         {
             if (IsSelected) return;
             IsSelected = true;
-            if (TileDefinition.IsGround)
+            if (TileDefinition.TileType.GetType().GetInterfaces().Contains(typeof(ISelectable)))
             {
-                TileAppearanceManager.SetTileOverlay(TileOverlayType.Selected);
-            }
-            if (TileDefinition.IsActiveWall)
-            {
-                // Add reinforce/dynamite/mine/etc.
-                //TileAppearanceManager.SetOverlayMaterial(TileOverlayType.Selected);
+                if (TileDefinition.IsGround)
+                {
+                    TileAppearanceManager.SetTileOverlay(TileOverlayType.Selected);
+                }
+                if (TileDefinition.IsActiveWall)
+                {
+                    // Add reinforce/dynamite/mine/etc.
+                    TileAppearanceManager.SetTileOverlay(TileOverlayType.Selected);
+                }
             }
         }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Concepts.Gameplay.Building
 {
-    public interface IBuildingType : ISelectable, ITooltipInformationDisplayable, IExpensive, ITakeTimeToCreateable, IDamageable, IRepairable, IUpgradable
+    public interface IBuildingType : ISelectable, ITooltipInformationDisplayable, IExpensive, ITakeTimeToCreateable, IDamageableDefinition, IRepairable, IUpgradable
     {
         //IBuildingTileLayout[,] DefaultTileLayout { get; set; }
         Vector3 BuildingPivotCoordinates { get; set; }

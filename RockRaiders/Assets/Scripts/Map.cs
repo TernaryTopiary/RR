@@ -7,7 +7,9 @@ using Assets.Scripts.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Concepts.Constants;
+using Assets.Scripts.Concepts.Cosmic.Array;
 using Assets.Scripts.Concepts.Gameplay.Building.BuildingType;
+using Assets.Scripts.Concepts.Gameplay.Building.Components;
 using Assets.Scripts.Miscellaneous;
 using UnityEngine;
 
@@ -21,7 +23,8 @@ namespace Assets.Scripts
         public static float DefaultCameraHeight { get; set; } = 3.0f;
         public Tile[,] Tiles2D { get; private set; }
         public GameObject[,] TileGameObjects2D { get; private set; }
-
+        public BuildingNodeInstantiation[,] BuildingMap { get; private set; }
+        
         public Vector2 Dimensions
         {
             get { return _dimensions; }
@@ -30,6 +33,7 @@ namespace Assets.Scripts
                 _dimensions = value;
                 Tiles2D = new Tile[(int)value.x, (int)value.y];
                 TileGameObjects2D = new GameObject[(int)value.x, (int)value.y];
+                BuildingMap = new BuildingNodeInstantiation[(int)value.x, (int)value.y];
             }
         }
 

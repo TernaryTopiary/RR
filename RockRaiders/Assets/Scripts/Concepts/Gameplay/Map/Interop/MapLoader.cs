@@ -30,6 +30,9 @@ namespace Assets.Scripts
 
         IEnumerator Start()
         {
+            MaterialManager.LoadData();
+            PrefabManager.LoadData();
+
             try
             {
                 LoadMap(MapFilePath);

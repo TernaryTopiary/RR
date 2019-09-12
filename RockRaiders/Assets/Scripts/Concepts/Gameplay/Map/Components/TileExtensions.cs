@@ -70,6 +70,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             var scriptManager = tilePhysicality.AddComponent<TileScriptManager>();
             scriptManager.Physicality = tilePhysicality;
             var tileApperanaceManager = tilePhysicality.AddComponent<TileAppearanceManager>();
+            tileApperanaceManager.TileDefinition = tile;
             tileApperanaceManager.MeshRenderer = meshRenderer;
             var interactor = tilePhysicality.AddComponent<TileInteractor>();
             interactor.TileDefinition = tile;

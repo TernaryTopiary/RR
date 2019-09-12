@@ -33,9 +33,14 @@ namespace Assets.Scripts
                     public static Material TintMine;
                     public static Material TintReinforce;
                     public static Material TintDynamite;
+
                     public static Material TintBuildingFoundationPlacementMaterial;
                     public static Material TintBuildingPlacementMaterial;
                     public static Material TintBuildingPlacementDeniedMaterial;
+
+                    public static Material BuildingFoundation;
+                    public static Material BuildingFoundationPowered;
+                    public static Material PathFoundation;
                 }
 
                 public static class Debug
@@ -80,6 +85,9 @@ namespace Assets.Scripts
             Constants.Gameplay.Map.TintMine = Resources.Load("Materials/TintColorMineQueue") as Material;
             Constants.Gameplay.Map.TintReinforce = Resources.Load("Materials/TintColorReinforce") as Material;
             Constants.Gameplay.Map.TintDynamite = Resources.Load("Materials/TintColorDynamite") as Material;
+
+            Constants.Gameplay.Map.BuildingFoundation = Resources.Load($"Materials/Buildings/{nameof(Constants.Gameplay.Map.BuildingFoundation)}") as Material;
+            Constants.Gameplay.Map.BuildingFoundationPowered = Resources.Load($"Materials/Buildings/{nameof(Constants.Gameplay.Map.BuildingFoundationPowered)}") as Material;
 
             Constants.Gameplay.Buildings.TeleportFire = Resources.Load($"Materials/Buildings/Effects/{nameof(Constants.Gameplay.Buildings.TeleportFire)}") as Material;
         }

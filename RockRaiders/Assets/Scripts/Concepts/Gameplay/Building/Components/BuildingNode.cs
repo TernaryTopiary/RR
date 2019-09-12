@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.Concepts.Gameplay.Building.Components
+﻿using Assets.Scripts.Concepts.Cosmic.Space;
+
+namespace Assets.Scripts.Concepts.Gameplay.Building.Components
 {
     public class BuildingNode
     {
@@ -19,6 +21,5 @@
         public static BuildingNode PowerStationBuildingX0Y0 = new BuildingNode() { };
 
         public static BuildingNode PowerStationBuildingX1Y0 = new BuildingNode() { };
-
     }
 }

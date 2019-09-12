@@ -11,6 +11,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Ground
         public bool IsTooltipVocalized { get; set; } = false;
         public bool IsHighlightedToBuild { get; set; }
         public string MaterialBaseName { get; } = "00";
+        public bool PreventSelection { get; set; }
     }
 
     public class TileGroundSlimySlugHole : Singleton<TileGroundSlimySlugHole>, ITileTypeSolidGround, ISelectable
@@ -20,6 +21,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Ground
         public string TooltipText { get; set; } = "Slimy Slug Hole";
         public bool IsTooltipVocalized { get; set; } = true;
         public string MaterialBaseName { get; } = "30";
+        public bool PreventSelection { get; set; }
     }
 
     public class TileGroundWater : Singleton<TileGroundWater>, ITileTypeLiquidGround

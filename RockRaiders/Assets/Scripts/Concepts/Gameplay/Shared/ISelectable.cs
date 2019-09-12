@@ -2,6 +2,6 @@
 {
     public interface ISelectable
     {
-
+        bool PreventSelection { get; set; }
     }
 }

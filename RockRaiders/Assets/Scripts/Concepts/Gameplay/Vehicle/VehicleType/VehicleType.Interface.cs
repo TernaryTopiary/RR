@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Concepts.Gameplay.Vehicle.VehicleType
 {
-    public interface IVehicleType :  ISelectable, ITooltipInformationDisplayable, IExpensive, ITakeTimeToCreateable, IDamageable, IRepairable, IUpgradable, IMoveable, IPilotable
+    public interface IVehicleType :  ISelectable, ITooltipInformationDisplayable, IExpensive, ITakeTimeToCreateable, IDamageableDefinition, IRepairable, IUpgradable, IMoveable, IPilotable
     {
 
     }

@@ -2,6 +2,7 @@
 {
     public interface IDamageable
     {
-        int DefaultHitpoints { get; set; }
+        int MaxHitpoints { get; set; }
+        int CurrentHitpoints { get; set; }
     }
 }

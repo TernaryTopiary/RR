@@ -7,9 +7,11 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
     {
         Reinforce = 1 << 0,
         Dynamite = 1 << 1,
-        PlaceBuilding = 1 << 2,
-        PlaceBuildingFoundation = 1 << 3,
-        InvalidBuildingPlacement = 1 << 4,
-        Selected = 1 << 5
+        PowerPath = 1 << 2,
+        Foundation = 1 << 3,
+        PlaceBuilding = 1 << 4,
+        PlaceBuildingFoundation = 1 << 5,
+        InvalidBuildingPlacement = 1 << 6,
+        Selected = 1 << 7
     }
 }

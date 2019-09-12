@@ -1,14 +1,12 @@
+using Assets.Scripts.Concepts.Cosmic.Space;
+using Assets.Scripts.Concepts.Gameplay.Map.TileType;
+using Assets.Scripts.Concepts.Gameplay.Map.TileType.Ground;
+using Assets.Scripts.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Assets.Scripts.Concepts.Cosmic.Space;
-using Assets.Scripts.Concepts.Gameplay.Map.TileType;
-using Assets.Scripts.Concepts.Gameplay.Map.TileType.Ground;
-using Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall;
-using Assets.Scripts.Extensions;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 {
@@ -22,6 +20,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
             IndexNorthEast = 2,
             IndexSouthEast = 3,
             IndexSouthWest = 4;
+
         //IndexNorthWest = 0,
         //IndexNorthEast = 1,
         //IndexSouthEast = 2,
@@ -30,7 +29,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         public event Action<Tile> VerticiesChanged;
 
         public ITileType TileType { get; set; }
-        
+
         private List<Vector3> _verticies = new List<Vector3>(Constants.Constants.DefaultTileVerticies);
 
         public List<Vector3> Verticies
@@ -108,10 +107,6 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 
         public Vector3 VertexSouthWest => Vertex3;
 
-        public Vector3 Average() => Verticies.Average();
-
-        public float AverageTileHeight => (Vertex0.y + Vertex1.y + Vertex2.y + Vertex3.y) / 4;
-
         public static float DefaultTileVerticalHeight { get; set; } = 2f;
 
         public bool IsGround => TileType is ITileTypeGround;
@@ -120,6 +115,9 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
         public bool IsWater => TileType is TileGroundWater;
         public bool IsLava => TileType is TileGroundLava;
         public bool IsCeiling => Configuration == TileConfiguration.Ceiling;
+        public bool IsFlat => Verticies.Select(vert => vert.y).Distinct().Count() == 1;
+
+        public bool IsPowered { get; set; }
 
         /// <summary>
         /// Is this currently a wall?
@@ -128,6 +126,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.Components
 
         public TileConfiguration Configuration { get; set; } = TileConfiguration.Ceiling;
         public float OriginalTileHeight { get; set; }
+        public float OverriddenTileHeight { get; set; }
         public CompassAxisOrientation? Orientation { get; internal set; }
 
         public new string ToString()

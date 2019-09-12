@@ -16,6 +16,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
         public string ExternalCornerMaterialName { get; } = "5";
         public string ReinforcementMaterialName { get; } = "2";
         public string CeilingMaterialName { get; } = "70";
+        public bool PreventSelection { get; set; }
     }
 
     public class TileWallDirt : Singleton<TileWallDirt>, ITileTypeWallLightDrillable, ISelectable
@@ -31,6 +32,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
         public string ExternalCornerMaterialName { get; } = "5";
         public string ReinforcementMaterialName { get; } = "2";
         public string CeilingMaterialName { get; } = "70";
+        public bool PreventSelection { get; set; }
     }
 
     public class TileWallLooseRock : Singleton<TileWallLooseRock>, ITileTypeWallLightDrillable, ISelectable
@@ -46,6 +48,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
         public string ExternalCornerMaterialName { get; } = "5";
         public string ReinforcementMaterialName { get; } = "2";
         public string CeilingMaterialName { get; } = "70";
+        public bool PreventSelection { get; set; }
     }
 
     public class TileWallHardRock : Singleton<TileWallHardRock>, ITileTypeTypeWallHeavyDrillable, ISelectable
@@ -61,6 +64,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
         public string ExternalCornerMaterialName { get; } = "5";
         public string ReinforcementMaterialName { get; } = "2";
         public string CeilingMaterialName { get; } = "70";
+        public bool PreventSelection { get; set; }
     }
 
     public class TileWallSolidRock : Singleton<TileWallSolidRock>, ITileTypeWall
@@ -89,6 +93,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
         public string ExternalCornerMaterialName { get; } = "4";
         public string ReinforcementMaterialName { get; } = "4";
         public string CeilingMaterialName { get; } = "70";
+        public bool PreventSelection { get; set; }
     }
 
     public class TileWallEnergyCrystalSeam : Singleton<TileWallEnergyCrystalSeam>, ITileTypeWallLightDrillable, ISelectable
@@ -104,6 +109,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType.Wall
         public string ExternalCornerMaterialName { get; } = "2";
         public string ReinforcementMaterialName { get; } = "2";
         public string CeilingMaterialName { get; } = "70";
+        public bool PreventSelection { get; set; }
     }
 
     public class TileWallEnergyCrystalRegeneratorSeam : Singleton<TileWallEnergyCrystalRegeneratorSeam>, ITileTypeWall

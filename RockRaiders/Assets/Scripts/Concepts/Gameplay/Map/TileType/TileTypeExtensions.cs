@@ -47,7 +47,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Map.TileType
         string ReinforcementMaterialName { get; }
     }
 
-    public interface ITileTypeWallDamageable : ITileTypeWall, ISelectable, IDamageable
+    public interface ITileTypeWallDamageable : ITileTypeWall, ISelectable, IDamageableDefinition
     {
     }
 

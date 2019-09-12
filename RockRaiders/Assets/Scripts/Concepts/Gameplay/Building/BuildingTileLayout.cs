@@ -6,7 +6,8 @@ namespace Assets.Scripts.Concepts.Gameplay.Building
 {
     public interface IBuildingTileLayout
     {
-        IEnumerable<BuildingNode> Nodes { get; set; }
+        IBuildingTileType BuildingTileType { get; set; }
+        BuildingNode Node { get; set; }
 
         List<ITileType> ValidTargetTileTypes { get; set; }
     }
@@ -14,8 +15,8 @@ namespace Assets.Scripts.Concepts.Gameplay.Building
     public class BuildingTileLayout<T> : IBuildingTileLayout 
         where T : IBuildingTileType, new()
     {
-        public T BuildingTileType;
-        public IEnumerable<BuildingNode> Nodes { get; set; }
+        public IBuildingTileType BuildingTileType { get; set; }
+        public BuildingNode Node { get; set; }
         public List<ITileType> ValidTargetTileTypes { get; set; } = new List<ITileType>();
 
         public BuildingTileLayout()
@@ -23,10 +24,10 @@ namespace Assets.Scripts.Concepts.Gameplay.Building
             BuildingTileType = new T();
         }
 
-        public BuildingTileLayout(params BuildingNode[] nodes)
+        public BuildingTileLayout(BuildingNode node)
         {
             BuildingTileType = new T();
-            Nodes = nodes;
+            Node = node;
         }
     }
 }
