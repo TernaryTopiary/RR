@@ -203,8 +203,16 @@ namespace Assets.Scripts
                 }
             }
 
+            Extents = new Bounds()
+            {
+                min = Tiles2D[0,0].GetVertexAt(CornerOrientation.NorthWest),
+                max = Tiles2D[(int)Dimensions.x - 1, (int)Dimensions.y - 1].GetVertexAt(CornerOrientation.SouthEast)
+            };
+
             return tileDictionary;
         }
+
+        public Bounds Extents { get; set; }
 
         public void CalculateTileHeights()
         {

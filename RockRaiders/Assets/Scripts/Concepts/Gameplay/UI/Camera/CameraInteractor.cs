@@ -23,8 +23,11 @@ namespace Assets.Scripts.Concepts.Gameplay.UI.Camera
 
         public CameraManager CameraManager = CameraManager.GetInstance();
 
+        public Scripts.Map Map = Scripts.Map.GetInstance();
+
         private void Start()
         {
+            
         }
 
         public float GetMousePanEasingFactor(float distanceToEdgeOfScreen)
@@ -60,22 +63,22 @@ namespace Assets.Scripts.Concepts.Gameplay.UI.Camera
             translation += (Input.GetAxis("Horizontal") * ControllerSensitivity * CameraManager.Right) + (Input.GetAxis("Vertical") * ControllerSensitivity * CameraManager.Forward);
             
             // Move camera if mouse pointer reaches screen borders
-            if (Input.mousePosition.x < ScrollAreaRadius)
+            if (Input.mousePosition.x < ScrollAreaRadius && transform.position.x > Map.Extents.min.x)
             {
                 translation += CameraManager.Left * ScrollSpeed * Time.deltaTime * GetMousePanEasingFactor(Input.mousePosition.x);
             }
 
-            if (Input.mousePosition.x >= Screen.width - ScrollAreaRadius)
+            if (Input.mousePosition.x >= Screen.width - ScrollAreaRadius && transform.position.x < Map.Extents.max.x)
             {
                 translation += CameraManager.Right * ScrollSpeed * Time.deltaTime * GetMousePanEasingFactor(Screen.width - Input.mousePosition.x);
             }
 
-            if (Input.mousePosition.y < ScrollAreaRadius)
+            if (Input.mousePosition.y < ScrollAreaRadius && transform.position.z > Map.Extents.min.z)
             {
                 translation += CameraManager.Back * ScrollSpeed * Time.deltaTime * GetMousePanEasingFactor(Input.mousePosition.y);
             }
 
-            if (Input.mousePosition.y > Screen.height - ScrollAreaRadius)
+            if (Input.mousePosition.y > Screen.height - ScrollAreaRadius && transform.position.z < Map.Extents.max.z)
             {
                 translation += CameraManager.Forward * ScrollSpeed * Time.deltaTime * GetMousePanEasingFactor(Screen.height - Input.mousePosition.y);
             }

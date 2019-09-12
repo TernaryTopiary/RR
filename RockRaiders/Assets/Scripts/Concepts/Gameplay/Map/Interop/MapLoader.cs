@@ -30,6 +30,11 @@ namespace Assets.Scripts
 
         IEnumerator Start()
         {
+            var loadscreen = GameObject.Find("LoadingScreen");
+            var loadrect = loadscreen.GetComponent<RectTransform>();
+            loadrect.anchoredPosition = Vector2.zero;
+            loadscreen.SetActive(true);
+
             MaterialManager.LoadData();
             PrefabManager.LoadData();
 
@@ -41,7 +46,10 @@ namespace Assets.Scripts
             {
                 Debug.Log("Failed to load map.");
             }
+
+            loadscreen.SetActive(false);
             return null;
+
         }
 
         public Map LoadMap(string path)
