@@ -37,6 +37,7 @@ namespace Assets.Scripts
 
             MaterialManager.LoadData();
             PrefabManager.LoadData();
+            AudioManager.LoadData();
 
             try
             {
@@ -166,7 +167,6 @@ namespace Assets.Scripts
             if (Camera.main != null && Camera == null) Camera = Camera.main;
             if (Camera != null)
             {
-                Debug.DrawLine(campos, campos + Vector3.up, Color.green, 30f);
                 Camera.transform.localPosition = campos;
                 CameraManager.GetInstance().YRotationAngle = angle;
             }

@@ -27,7 +27,7 @@ namespace Assets.Scripts
 
         public Map Map = Map.GetInstance();
         public MouseManager MouseManager = MouseManager.GetInstance();
-        public AudioManager AudioManager = AudioManager.GetInstance();
+        public UIAudioManager UIAudioManager = UIAudioManager.GetInstance();
         private Vector3 _lastMousePosition;
         public TileInteractor SelectedMapTileInteractor { get; internal set; }
 
@@ -41,7 +41,7 @@ namespace Assets.Scripts
             if (!(tile.TileDefinition.TileType is ISelectable))
             {
                 MouseManager.ShowMouseState<MouseStateSelectionError>(MouseStateSelectionError.Duration);
-                AudioManager.PlaySound(MouseStateSelectionError.Audio);
+                UIAudioManager.PlaySound(MouseStateSelectionError.Audio);
             }
             else
             {
@@ -49,7 +49,7 @@ namespace Assets.Scripts
                 SelectedMapTileInteractor?.Unselect();
                 SelectedMapTileInteractor = tile;
                 tile.Select();
-                //AudioManager.PlaySound(MouseClick);
+                //UIAudioManager.PlaySound(MouseClick);
             }
         }
 
@@ -288,6 +288,7 @@ namespace Assets.Scripts
             var buildingRoot = building.BuildingRootObject = new GameObject { name = $"{proposedBuilding.ToString()}_({proposedBuildingLocation.x},{proposedBuildingLocation.y})" };
             buildingRoot.transform.parent = MapBuildingRootObject.transform;
             building.SpawnScript = buildingRoot.AddComponent<BuildingSpawnScript>();
+            building.SpawnScript.Center = proposedBuildingLocation;
             foreach (var kv in plan.Where(tile => tile.Value.BuildingTileType is BuildingTileTypeFoundation))
             {
                 var targetLocation = proposedBuildingLocation + kv.Key.ToOffsetVector2();
@@ -317,6 +318,8 @@ namespace Assets.Scripts
 
                 Map.BuildingMap[(int)targetLocation.x, (int)targetLocation.y] = instantiation;
             }
+
+            building.SpawnScript.Spawn();
         }
 
         public GameObject LastHoveredObject { get; private set; }

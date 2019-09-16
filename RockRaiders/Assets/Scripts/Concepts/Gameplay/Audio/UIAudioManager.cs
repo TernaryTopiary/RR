@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Concepts.Gameplay.Audio
 {
-    public class AudioManager : Singleton<AudioManager>
+    public class UIAudioManager : Singleton<UIAudioManager>
     {
         internal void PlaySound(object audio)
         {

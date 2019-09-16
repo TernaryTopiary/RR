@@ -22,7 +22,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.Effects
 
         public GameObject Physicality { get; private set; }
         public SkinnedMeshRenderer MeshRenderer { get; private set; }
-        public Material ActiveMaterial { get; private set; }
+        public Material ActiveMaterial => MeshRenderer.material;
 
         public static float EdgeDistance = 0.1f;
         public static float FireHeight = 0.5f;
@@ -37,7 +37,7 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.Effects
 
         public static int[] DefaultTileIndicies = {
             0, 1, 2,
-            2, 3, 0
+            2, 3, 0,
         };
 
         public static Vector2[] DefaultUvs = DefaultVerticies.Select(vert => new Vector2(vert.x, vert.y > 0 ? 1 : 0)).ToArray();
@@ -48,9 +48,8 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.Effects
 
         void Start()
         {
-            if(MaterialManager.IsLoaded) Create(DefaultVerticies.ToArray(), DefaultTileIndicies, DefaultUvs);
-            Show();
-            ActiveMaterial = MeshRenderer.material;
+            MeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            MeshRenderer.receiveShadows = false;
             InvokeRepeating(nameof(IncrementTexture), 0.0f, TextureDurationSeconds);
         }
 
@@ -73,12 +72,21 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.Effects
             if (TextureIndex >= TextureTilesCount) TextureIndex = 0;
         }
 
-        public GameObject Create(Vector3[] verts, int[] indicies, Vector2[] uvs)
+        public GameObject Create (Vector3 vStart, Vector3 vEnd)
+        {
+            var v1 = vStart;
+            var v2 = new Vector3(vStart.x, vStart.y + FireHeight, vStart.z);
+            var v3 = new Vector3(vEnd.x, vEnd.y + FireHeight, vEnd.z);
+            var v4 = vEnd;
+            return Create(new[] {v1, v2, v3, v4}, DefaultTileIndicies, DefaultUvs);
+        }
+
+        private GameObject Create(Vector3[] verts, int[] indicies, Vector2[] uvs)
         {
             var tilePhysicality = Physicality = new GameObject { name = "teleportFire_" };
             var meshRenderer = MeshRenderer = tilePhysicality.AddComponent<SkinnedMeshRenderer>();
             meshRenderer.updateWhenOffscreen = true;
-            meshRenderer.material = TeleportFireMaterial;
+            meshRenderer.sharedMaterial = meshRenderer.material = TeleportFireMaterial;
 
             var mesh = new Mesh
             {

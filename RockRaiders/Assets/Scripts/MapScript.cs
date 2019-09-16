@@ -58,7 +58,7 @@
 //            if (!mats.Contains(MapConstants.TintSelected)) mats.Add(MapConstants.TintSelected);
 //            mr.materials = mats.ToArray();
 //            var aS = Camera.main.GetComponent<AudioSource>();
-//            AudioSource.PlayClipAtPoint(aS.clip, Camera.main.transform.position, .0125f);
+//            LocalAudioSource.PlayClipAtPoint(aS.clip, Camera.main.transform.position, .0125f);
 
 //            var location = Map.GetGameObjectCoords(gameObject);//gameObject.GetComponent<TileScript>();
 //            var tile = Map.Tiles2D[(int)location.X, (int)location.Y];

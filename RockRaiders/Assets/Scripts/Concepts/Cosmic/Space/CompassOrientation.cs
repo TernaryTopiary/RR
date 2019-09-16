@@ -69,6 +69,66 @@ namespace Assets.Scripts.Concepts.Cosmic.Space
             return new Vector3(vec.x, 0, vec.y);
         }
 
+        public static CompassOrientation? Add(this CompassOrientation orientation,
+            CompassAxisOrientation axisOrientation)
+        {
+            switch (orientation)
+            {
+                case CompassOrientation.NorthWest:
+                    if (axisOrientation == CompassAxisOrientation.North) return null;
+                    if (axisOrientation == CompassAxisOrientation.East) return CompassOrientation.North;
+                    if (axisOrientation == CompassAxisOrientation.South) return CompassOrientation.West;
+                    if (axisOrientation == CompassAxisOrientation.West) return null;
+                    break;
+                case CompassOrientation.North:
+                    if (axisOrientation == CompassAxisOrientation.North) return null;
+                    if (axisOrientation == CompassAxisOrientation.East) return CompassOrientation.NorthEast;
+                    if (axisOrientation == CompassAxisOrientation.South) return CompassOrientation.None;
+                    if (axisOrientation == CompassAxisOrientation.West) return CompassOrientation.NorthWest;
+                    break;
+                case CompassOrientation.NorthEast:
+                    if (axisOrientation == CompassAxisOrientation.North) return null;
+                    if (axisOrientation == CompassAxisOrientation.East) return null;
+                    if (axisOrientation == CompassAxisOrientation.South) return CompassOrientation.East;
+                    if (axisOrientation == CompassAxisOrientation.West) return CompassOrientation.North;
+                    break;
+                case CompassOrientation.West:
+                    if (axisOrientation == CompassAxisOrientation.North) return CompassOrientation.NorthWest;
+                    if (axisOrientation == CompassAxisOrientation.East) return CompassOrientation.None;
+                    if (axisOrientation == CompassAxisOrientation.South) return CompassOrientation.SouthWest;
+                    if (axisOrientation == CompassAxisOrientation.West) return null;
+                    break;
+                case CompassOrientation.None:
+                    return axisOrientation.ToCompassOrientation();
+                case CompassOrientation.East:
+                    if (axisOrientation == CompassAxisOrientation.North) return CompassOrientation.NorthEast;
+                    if (axisOrientation == CompassAxisOrientation.East) return null;
+                    if (axisOrientation == CompassAxisOrientation.South) return CompassOrientation.SouthEast;
+                    if (axisOrientation == CompassAxisOrientation.West) return CompassOrientation.None;
+                    break;
+                case CompassOrientation.SouthWest:
+                    if (axisOrientation == CompassAxisOrientation.North) return CompassOrientation.West;
+                    if (axisOrientation == CompassAxisOrientation.East) return CompassOrientation.South;
+                    if (axisOrientation == CompassAxisOrientation.South) return null;
+                    if (axisOrientation == CompassAxisOrientation.West) return null;
+                    break;
+                case CompassOrientation.South:
+                    if (axisOrientation == CompassAxisOrientation.North) return CompassOrientation.None;
+                    if (axisOrientation == CompassAxisOrientation.East) return CompassOrientation.North;
+                    if (axisOrientation == CompassAxisOrientation.South) return null;
+                    if (axisOrientation == CompassAxisOrientation.West) return CompassOrientation.SouthWest;
+                    break;
+                case CompassOrientation.SouthEast:
+                    if (axisOrientation == CompassAxisOrientation.North) return CompassOrientation.East;
+                    if (axisOrientation == CompassAxisOrientation.East) return null;
+                    if (axisOrientation == CompassAxisOrientation.South) return null;
+                    if (axisOrientation == CompassAxisOrientation.West) return CompassOrientation.South;
+                    break;
+                default: throw new ArgumentOutOfRangeException();
+            }
+            return null;
+        }
+
         public static CompassOrientation Rotate(this CompassOrientation orientation, RotationalOrientation rotationalOrientation)
         {
             switch (orientation)
