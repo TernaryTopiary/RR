@@ -9,24 +9,17 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.Effects
 {
     public class BuildingTeleportFire : MonoBehaviour
     {
-        public bool Visible { get; private set; }
-        public float Opacity = 0f;
-        public const float MinOpacity = 0f;
-        public const float MaxOpacity = 1f;
-        public static string TextureNameBase = "magicbarrier";
-        public static int TextureCountSigFigs = 3;
-        public static int TextureTilesCount = 64;
-        public static List<string> TextureNames = Enumerable.Repeat(TextureNameBase, TextureTilesCount).Select((str, index) => string.Join("", str, index.ToString().PadLeft(TextureCountSigFigs, '0'))).ToList();
-        public List<Texture2D> Textures => MaterialManager.Constants.Gameplay.Buildings.TeleportFireTextures;
         public Material TeleportFireMaterial => MaterialManager.Constants.Gameplay.Buildings.TeleportFire;
 
         public GameObject Physicality { get; private set; }
         public SkinnedMeshRenderer MeshRenderer { get; private set; }
+        public FadeScript FadeScript { get; set; }
         public Material ActiveMaterial => MeshRenderer.material;
 
-        public static float EdgeDistance = 0.1f;
+        public bool IsStarted { get; set; } = false;
+        public Action Started;
+
         public static float FireHeight = 0.5f;
-        public readonly CompassOrientation DefaultDirection = CompassOrientation.South;
         public static readonly List<Vector3> DefaultVerticies = new List<Vector3>
         {
             new Vector3(0, 0, 0) ,
@@ -42,34 +35,10 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.Effects
 
         public static Vector2[] DefaultUvs = DefaultVerticies.Select(vert => new Vector2(vert.x, vert.y > 0 ? 1 : 0)).ToArray();
 
-        private int TextureIndex = 0;
-        private float elapsedTime = 0.0f;
-        public float TextureDurationSeconds { get; set; } = 0.03f;
-
         void Start()
         {
-            MeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-            MeshRenderer.receiveShadows = false;
-            InvokeRepeating(nameof(IncrementTexture), 0.0f, TextureDurationSeconds);
-        }
-
-        void Update()
-        {
-            if (Visible)
-            {
-                if (Opacity < MaxOpacity)
-                {
-
-                }
-            }
-        }
-
-        private void IncrementTexture()
-        {
-            if (!Visible) return;
-            ActiveMaterial.mainTexture = Textures[TextureIndex];
-            TextureIndex += 1;
-            if (TextureIndex >= TextureTilesCount) TextureIndex = 0;
+            IsStarted = true;
+            Started?.Invoke();
         }
 
         public GameObject Create (Vector3 vStart, Vector3 vEnd)
@@ -86,7 +55,9 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.Effects
             var tilePhysicality = Physicality = new GameObject { name = "teleportFire_" };
             var meshRenderer = MeshRenderer = tilePhysicality.AddComponent<SkinnedMeshRenderer>();
             meshRenderer.updateWhenOffscreen = true;
-            meshRenderer.sharedMaterial = meshRenderer.material = TeleportFireMaterial;
+            FadeScript = tilePhysicality.AddComponent<FadeScript>();
+            FadeScript.Material = meshRenderer.sharedMaterial = meshRenderer.material = TeleportFireMaterial;
+            var fireTextureScript = tilePhysicality.AddComponent<TeleportFireTextureScript>();
 
             var mesh = new Mesh
             {
@@ -98,17 +69,19 @@ namespace Assets.Scripts.Concepts.Gameplay.Building.Effects
             mesh.RecalculateBounds();
 
             meshRenderer.sharedMesh = mesh;
+
             return tilePhysicality;
         }
 
         public void Show()
         {
-            Visible = true;
+            if (FadeScript.IsStarted) FadeScript.FadeIn();
+            else FadeScript.Started += FadeScript.FadeIn;
         }
 
         public void Hide()
         {
-            Visible = false;
+            FadeScript.FadeOut();
         }
     }
 }

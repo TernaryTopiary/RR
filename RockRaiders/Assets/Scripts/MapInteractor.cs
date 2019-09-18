@@ -289,6 +289,7 @@ namespace Assets.Scripts
             buildingRoot.transform.parent = MapBuildingRootObject.transform;
             building.SpawnScript = buildingRoot.AddComponent<BuildingSpawnScript>();
             building.SpawnScript.Center = proposedBuildingLocation;
+            building.SpawnScript.Plan = plan;
             foreach (var kv in plan.Where(tile => tile.Value.BuildingTileType is BuildingTileTypeFoundation))
             {
                 var targetLocation = proposedBuildingLocation + kv.Key.ToOffsetVector2();
@@ -319,7 +320,7 @@ namespace Assets.Scripts
                 Map.BuildingMap[(int)targetLocation.x, (int)targetLocation.y] = instantiation;
             }
 
-            building.SpawnScript.Spawn();
+            building.SpawnScript.Started += building.SpawnScript.Spawn;
         }
 
         public GameObject LastHoveredObject { get; private set; }

@@ -36,6 +36,10 @@ namespace Assets.Scripts
             {
                 {CompassOrientation.None, Resources.Load<GameObject>($"Prefabs/Buildings/{BuildingType.ToolStore}/{BuildingType.ToolStore}") }
             });
+            BuildingModelMap.Add(BuildingType.TeleportPad, new AdjoiningGrid9<GameObject>
+            {
+                {CompassOrientation.None, Resources.Load<GameObject>($"Prefabs/Buildings/{BuildingType.TeleportPad}/{BuildingType.TeleportPad}") }
+            });
         }
     }
 }

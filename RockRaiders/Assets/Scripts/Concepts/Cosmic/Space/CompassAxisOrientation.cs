@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Concepts.Cosmic.Space
 {
@@ -64,6 +65,38 @@ namespace Assets.Scripts.Concepts.Cosmic.Space
                 case CompassAxisOrientation.South: return new[] { CornerOrientation.SouthEast, CornerOrientation.SouthWest };
                 case CompassAxisOrientation.West: return new[] { CornerOrientation.SouthWest, CornerOrientation.NorthWest };
                 default: throw new ArgumentOutOfRangeException(nameof(orientation), "Unsupported orientation.");
+            }
+        }
+        public static Vector3 ToOffsetVector2(this CompassAxisOrientation orientation)
+        {
+            switch (orientation)
+            {
+                case CompassAxisOrientation.North:
+                    return new Vector2(0, 1);
+                case CompassAxisOrientation.West:
+                    return new Vector2(-1, 0);
+                case CompassAxisOrientation.East:
+                    return new Vector2(1, 0);
+                case CompassAxisOrientation.South:
+                    return new Vector2(0, -1);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(orientation), orientation, null);
+            }
+        }
+        public static Vector3 ToOffsetVector3(this CompassAxisOrientation orientation)
+        {
+            switch (orientation)
+            {
+                case CompassAxisOrientation.North:
+                    return new Vector3(0, 0, 1);
+                case CompassAxisOrientation.West:
+                    return new Vector3(-1, 0, 0);
+                case CompassAxisOrientation.East:
+                    return new Vector3(1, 0, 0);
+                case CompassAxisOrientation.South:
+                    return new Vector3(0, 0, -1);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(orientation), orientation, null);
             }
         }
     }

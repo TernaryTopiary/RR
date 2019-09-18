@@ -70,7 +70,11 @@ namespace Assets.Scripts
         private static void LoadTextures()
         {
             Constants.Gameplay.UI.CursorDefault = Resources.Load<Texture2D>("Textures/Interface/Pointers/Aclosed");
-            foreach(var textureName in BuildingTeleportFire.TextureNames)
+            var list = Enumerable
+                .Repeat(TeleportFireTextureScript.TextureNameBase, TeleportFireTextureScript.TextureTilesCount)
+                .Select((str, index) => string.Join("", str,
+                    index.ToString().PadLeft(TeleportFireTextureScript.TextureCountSigFigs, '0'))).ToList();
+            foreach (var textureName in list)
             {
                 Constants.Gameplay.Buildings.TeleportFireTextures.Add(Resources.Load<Texture2D>("Textures/Models/Buildings/Animations/Teleport/Barrier/" + textureName));
             }
